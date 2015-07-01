@@ -1,6 +1,6 @@
 # PHP
 
-debian:jessie based PHP 5.6 image
+`debian:jessie` based PHP 5.6 image
 
 ## Usage
 
