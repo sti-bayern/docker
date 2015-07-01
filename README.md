@@ -1,6 +1,6 @@
 # nginx
 
-debian:jessie based nginx mainline image
+`debian:jessie` based nginx mainline image
 
 ## Usage
 
@@ -8,7 +8,7 @@ Run from docker command line, p.e.
 
     $ docker run -d -p 80:80 -p 443:443 akilli/nginx
 
-or use docker-compose, p.e. with _docker-compose.yml_ including something like
+or use docker-compose, p.e. with `docker-compose.yml` including something like
 
     nginx:
         image: akilli/nginx
