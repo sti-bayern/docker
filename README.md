@@ -8,7 +8,7 @@ Run from docker command line, p.e.
 
     $ docker run -d -p 9000:9000 -p 9001:9001 akilli/php
 
-or use docker-compose, p.e. with _docker-compose.yml_ including something like
+or use docker-compose, p.e. with `docker-compose.yml` including something like
 
     php:
         image: akilli/php
