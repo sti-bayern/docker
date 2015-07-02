@@ -39,13 +39,8 @@ RUN apt-get update && apt-get install -y \
 COPY www.conf /etc/php5/fpm/pool.d/www.conf
 COPY php.ini /etc/php5/mods-available/php.ini
 
-WORKDIR /etc/php5/cli/conf.d
-RUN ln -s ../../mods-available/php.ini 90-php.ini
-
-WORKDIR /etc/php5/fpm/conf.d
-RUN ln -s ../../mods-available/php.ini 90-php.ini
-
-WORKDIR /
+RUN ln -s ../../mods-available/php.ini /etc/php5/cli/conf.d/90-php.ini && \
+    ln -s ../../mods-available/php.ini /etc/php5/fpm/conf.d/90-php.ini
 
 #
 # Composer
