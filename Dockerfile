@@ -22,11 +22,6 @@ RUN apt-get update && apt-get install -y \
 RUN rm -rf /var/lib/apt/lists/*
 
 #
-# Volumes
-#
-VOLUME ["/var/www/html"]
-
-#
 # Configuration
 #
 COPY default.conf /etc/nginx/conf.d/default.conf
@@ -38,6 +33,11 @@ COPY snippets /etc/nginx/snippets
 #
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
     ln -sf /dev/stderr /var/log/nginx/error.log
+
+#
+# Volumes
+#
+VOLUME ["/var/www/html"]
 
 #
 # Ports
