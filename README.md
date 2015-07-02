@@ -1,13 +1,13 @@
+# Supported tags and respective `Dockerfile` links
+
+- [`5.6`, `latest` (*5.6/Dockerfile*)](https://github.com/akilli/docker/blob/master/php/Dockerfile)
+- [`7.0` (*7.0/Dockerfile*)](https://github.com/akilli/docker/blob/master/php-7.0/Dockerfile)
+
 # php
 
 `debian:jessie` based PHP image.
 
-**Note: `7.0` currently builds from PHP `master`.**
-
-## Supported tags and respective `Dockerfile` links
-
-- [`5.6`, `latest` (*5.6/Dockerfile*)](https://github.com/akilli/docker/blob/master/php/Dockerfile)
-- [`7.0` (*7.0/Dockerfile*)](https://github.com/akilli/docker/blob/master/php-7.0/Dockerfile)
+**Note:** `7.0` currently builds from PHP `master`.
 
 ## Usage
 
