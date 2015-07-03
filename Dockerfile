@@ -15,8 +15,10 @@ RUN apt-get update && apt-get install -y \
     postgresql-contrib-9.4
 
 RUN rm -rf /var/lib/apt/lists/* && \
-   rm -rf /var/lib/postgresql && \
-   mkdir -p /var/lib/postgresql
+    rm -rf /var/lib/postgresql && \
+    mkdir -p /var/lib/postgresql && \
+    mkdir -p /var/run/postgresql/9.4-main.pg_stat_tmp && \
+    chown postgres:postgres /var/run/postgresql/9.4-main.pg_stat_tmp
 
 #
 # Configuration
