@@ -15,7 +15,7 @@ or use docker-compose, p.e. with `docker-compose.yml` including something like
         ports:
             - "5432:5432"
 
-or
+or with data-only container
 
     postgresdata:
         image: debian:jessie
