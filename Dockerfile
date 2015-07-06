@@ -29,6 +29,7 @@ RUN apt-get update && apt-get install -y \
     php5-mcrypt \
     php5-mysqlnd \
     php5-pgsql \
+    php5-redis \
     php5-sqlite \
     php5-xdebug \
     php5-xmlrpc \
