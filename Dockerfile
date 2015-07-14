@@ -39,6 +39,7 @@ EXPOSE 5432
 #
 # Command
 #
-COPY postgres.sh /postgres.sh
+COPY entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT ["/postgres.sh"]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/usr/lib/postgresql/9.4/bin/postgres", "--config-file=/etc/postgresql/9.4/main/postgresql.conf"]
