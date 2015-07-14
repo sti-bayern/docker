@@ -5,9 +5,7 @@ MAINTAINER Ayhan Akilli
 #
 # Environment variables
 #
-ENV DEBIAN_FRONTEND=noninteractive \
-    NGINX_ROOT=/var/www/html \
-    NGINX_HOST=_
+ENV DEBIAN_FRONTEND=noninteractive
 
 #
 # APT packages
@@ -47,6 +45,5 @@ EXPOSE 80 443
 #
 # Command
 #
-COPY nginx.sh /nginx.sh
-
-ENTRYPOINT ["/nginx.sh"]
+ENTRYPOINT ["nginx"]
+CMD ["-g", "daemon off;"]
