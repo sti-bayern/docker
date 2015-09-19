@@ -7,21 +7,22 @@
 
 `debian:jessie` based PHP image.
 
-**Note:** `7.0` currently builds from PHP `master`.
+**Note:** `7.0` currently builds from PHP `php-7.0.0RC3`.
 
 ## Usage
 
 Run from docker command line, p.e.
 
-    $ docker run -d -p 9000:9000 -p 9001:9001 akilli/php
+    $ docker run -d -p 4000:4000 -p 8000:8000 -p 9000:9000 akilli/php
 
 or use docker-compose, p.e. with `docker-compose.yml` including something like
 
     php:
         image: akilli/php
         ports:
+            - "4000:4000"
+            - "8000:8000"
             - "9000:9000"
-            - "9001:9001"
 
 or
 
@@ -32,8 +33,9 @@ or
     php:
         image: akilli/php
         ports:
+            - "4000:4000"
+            - "8000:8000"
             - "9000:9000"
-            - "9001:9001"
         volumes_from:
             - app
     nginx:
