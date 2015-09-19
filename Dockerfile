@@ -28,11 +28,13 @@ RUN apt-get update && apt-get install -y \
     php5-intl \
     php5-json \
     php5-mcrypt \
+    php5-mongo \
     php5-mysqlnd \
     php5-pgsql \
+    php5-phpdbg \
+    php5-readline \
     php5-redis \
     php5-sqlite \
-    php5-xdebug \
     php5-xmlrpc \
     php5-xsl
 
@@ -59,7 +61,7 @@ RUN ln -sf /dev/stdout /var/log/php5-fpm.log
 #
 # Ports
 #
-EXPOSE 9000 9001
+EXPOSE 4000 8000 9000
 
 #
 # Command
