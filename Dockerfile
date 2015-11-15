@@ -11,7 +11,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # APT packages
 #
 RUN apt-get update && apt-get install -y \
-    postgresql \
+    postgresql-9.4 \
     postgresql-contrib-9.4
 
 RUN rm -rf /var/lib/apt/lists/* && \
