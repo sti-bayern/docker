@@ -7,8 +7,6 @@
 
 `debian:jessie` based PHP image.
 
-**Note:** `7.0` currently builds from PHP `php-7.0.0RC3`.
-
 ## Usage
 
 Run from docker command line, p.e.
