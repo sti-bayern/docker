@@ -1,7 +1,7 @@
 # Supported tags and respective `Dockerfile` links
 
-- [`5.6` (*5.6/Dockerfile*)](https://github.com/akilli/docker/blob/master/php/Dockerfile)
-- [`7.0`, `latest` (*7.0/Dockerfile*)](https://github.com/akilli/docker/blob/master/php-7.0/Dockerfile)
+- [`5.6` (*5.6/Dockerfile*)](https://github.com/akilli/docker/blob/master/php-5.6/Dockerfile)
+- [`7.0`, `latest` (*7.0/Dockerfile*)](https://github.com/akilli/docker/blob/master/php/Dockerfile)
 
 # php
 
