@@ -5,26 +5,31 @@ MAINTAINER Ayhan Akilli
 #
 # Environment variables
 #
-ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive \
+    TZ=Europe/Berlin \
+    PG_MAJOR=9.5
 
 #
 # APT packages
 #
+RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8 && \
+    echo 'deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main' $PG_MAJOR > /etc/apt/sources.list.d/pgsql.list
+
 RUN apt-get update && apt-get install -y \
-    postgresql-9.4 \
-    postgresql-contrib-9.4
+    postgresql-$PG_MAJOR \
+    postgresql-contrib-$PG_MAJOR
 
 RUN rm -rf /var/lib/apt/lists/* && \
     rm -rf /var/lib/postgresql && \
     mkdir -p /var/lib/postgresql && \
-    mkdir -p /var/run/postgresql/9.4-main.pg_stat_tmp && \
-    chown postgres:postgres /var/run/postgresql/9.4-main.pg_stat_tmp
+    mkdir -p /var/run/postgresql/$PG_MAJOR-main.pg_stat_tmp && \
+    chown postgres:postgres /var/run/postgresql/$PG_MAJOR-main.pg_stat_tmp
 
 #
 # Configuration
 #
-RUN echo "host all all 0.0.0.0/0  trust" >> /etc/postgresql/9.4/main/pg_hba.conf && \
-    echo "listen_addresses='*'" >> /etc/postgresql/9.4/main/postgresql.conf
+RUN echo "host all all 0.0.0.0/0  trust" >> /etc/postgresql/$PG_MAJOR/main/pg_hba.conf && \
+    echo "listen_addresses='*'" >> /etc/postgresql/$PG_MAJOR/main/postgresql.conf
 
 #
 # Volumes
@@ -42,4 +47,4 @@ EXPOSE 5432
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/usr/lib/postgresql/9.4/bin/postgres", "--config-file=/etc/postgresql/9.4/main/postgresql.conf"]
+CMD /usr/lib/postgresql/$PG_MAJOR/bin/postgres --config-file=/etc/postgresql/$PG_MAJOR/main/postgresql.conf

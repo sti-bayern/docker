@@ -1,6 +1,6 @@
 # postgres
 
-`debian:jessie` based PostgreSQL 9.4 image
+`debian:jessie` based PostgreSQL image
 
 ## Usage
 
