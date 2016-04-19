@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM akilli:base
 
 MAINTAINER Ayhan Akilli
 
