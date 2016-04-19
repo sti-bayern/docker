@@ -18,7 +18,7 @@ or use docker-compose, p.e. with `docker-compose.yml` including something like
 or with data-only container
 
     postgresdata:
-        image: debian:jessie
+        image: akilli:base
         volumes:
             - /var/lib/postgresql
     postgres:
