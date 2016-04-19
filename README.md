@@ -26,7 +26,7 @@ or use docker-compose, p.e. with `docker-compose.yml` including something like
 or
 
     app:
-        image: debian:jessie
+        image: akilli:base
         volumes:
             - .:/var/www/html
     php:
