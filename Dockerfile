@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 MAINTAINER Ayhan Akilli
 
 #
-# Environment variables
+# Set environment variables
 #
 ENV DEBIAN_FRONTEND=noninteractive \
     LANG=de_DE.UTF-8 \
@@ -33,6 +33,6 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo $TZ > /etc/timezone
 
 #
-# Environment
+# Reset environment variables
 #
 ENV DEBIAN_FRONTEND=
