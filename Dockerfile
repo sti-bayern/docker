@@ -1,4 +1,4 @@
-FROM akilli:base
+FROM akilli/base
 
 MAINTAINER Ayhan Akilli
 

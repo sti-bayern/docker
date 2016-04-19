@@ -6,7 +6,7 @@
 
 # php
 
-`akilli:base` based PHP image.
+`akilli/base` based PHP image.
 
 ## Usage
 
@@ -26,7 +26,7 @@ or use docker-compose, p.e. with `docker-compose.yml` including something like
 or
 
     app:
-        image: akilli:base
+        image: akilli/base
         volumes:
             - .:/var/www/html
     php:
