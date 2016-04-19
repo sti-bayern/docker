@@ -3,27 +3,28 @@ FROM akilli/base
 MAINTAINER Ayhan Akilli
 
 #
-# Environment variables
+# Set environment variables
 #
 ENV DEBIAN_FRONTEND=noninteractive
 
 #
 # APT packages
 #
-RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 && \
-    echo "deb http://nginx.org/packages/mainline/debian/ jessie nginx" >> /etc/apt/sources.list.d/nginx.list
-
 RUN apt-get update && apt-get install -y \
-    nginx \
-    ssl-cert
+    nginx
 
 RUN rm -rf /var/lib/apt/lists/*
 
 #
 # Configuration
 #
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY default.conf /etc/nginx/sites-available/default
 COPY snippets /etc/nginx/snippets
+
+#
+# Reset environment variables
+#
+ENV DEBIAN_FRONTEND=
 
 #
 # Volumes
