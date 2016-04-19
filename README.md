@@ -6,7 +6,7 @@
 
 # php
 
-`debian:jessie` based PHP image.
+`akilli:base` based PHP image.
 
 ## Usage
 
