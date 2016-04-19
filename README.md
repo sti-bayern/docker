@@ -1,6 +1,6 @@
 # postgres
 
-`debian:jessie` based PostgreSQL image
+`akilli:base` based PostgreSQL image
 
 ## Usage
 
