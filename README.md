@@ -1,6 +1,6 @@
 # postgres
 
-`akilli:base` based PostgreSQL image
+`akilli/base` based PostgreSQL image
 
 ## Usage
 
@@ -18,7 +18,7 @@ or use docker-compose, p.e. with `docker-compose.yml` including something like
 or with data-only container
 
     postgresdata:
-        image: akilli:base
+        image: akilli/base
         volumes:
             - /var/lib/postgresql
     postgres:
