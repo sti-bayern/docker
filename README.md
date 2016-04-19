@@ -1,6 +1,6 @@
 # nginx
 
-`akilli/base` based nginx mainline image
+`akilli/base` based nginx image
 
 ## Usage
 
