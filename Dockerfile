@@ -39,5 +39,4 @@ EXPOSE 80 443
 #
 # Command
 #
-ENTRYPOINT ["nginx"]
-CMD ["-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
