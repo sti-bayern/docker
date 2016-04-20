@@ -65,5 +65,4 @@ EXPOSE 4000 8000 9000
 #
 # Command
 #
-ENTRYPOINT ["php-fpm7.0"]
-CMD ["-F"]
+CMD ["php-fpm7.0", "-F"]
