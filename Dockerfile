@@ -48,4 +48,3 @@ EXPOSE 5432
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["/usr/lib/postgresql/$PG_MAJOR/bin/postgres", "--config-file=/etc/postgresql/$PG_MAJOR/main/postgresql.conf"]
