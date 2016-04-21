@@ -1,4 +1,4 @@
-# postgres
+# akilli/postgres
 
 `akilli/base` based PostgreSQL image
 
