@@ -1,11 +1,11 @@
+# akilli/php
+
+`akilli/base` based PHP image.
+
 # Supported tags and respective `Dockerfile` links
 
 - [`5.6` (*5.6/Dockerfile*)](https://github.com/akilli/docker/blob/master/php5/Dockerfile)
 - [`7.0`, `latest` (*7.0/Dockerfile*)](https://github.com/akilli/docker/blob/master/php/Dockerfile)
-
-# php
-
-`akilli/base` based PHP image.
 
 ## Usage
 
