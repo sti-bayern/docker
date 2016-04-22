@@ -21,6 +21,8 @@ RUN rm -rf /var/lib/apt/lists/*
 COPY default.conf /etc/nginx/sites-available/default
 COPY snippets /etc/nginx/snippets
 
+RUN  echo "\ndaemon off;" >> /etc/nginx/nginx.conf
+
 #
 # Reset environment variables
 #
@@ -39,4 +41,4 @@ EXPOSE 80 443
 #
 # Command
 #
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["nginx"]
