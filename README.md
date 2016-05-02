@@ -4,26 +4,26 @@
 
 ## Usage
 
-Run from docker command line, p.e.
+In your `docker-compose.yml` include something like
 
-    $ docker run -d -p 5432:5432 akilli/postgres
+    version: '2'
+    services:
+        postgres:
+            image: akilli/postgres
+            ports:
+                - "5432:5432"
 
-or use docker-compose, p.e. with `docker-compose.yml` including something like
+or with a separate data container
 
-    postgres:
-        image: akilli/postgres
-        ports:
-            - "5432:5432"
-
-or with data-only container
-
-    postgresdata:
-        image: akilli/base
-        volumes:
-            - /var/lib/postgresql
-    postgres:
-        image: akilli/postgres
-        ports:
-            - "5432:5432"
-        volumes_from:
-            - postgresdata
+    version: '2'
+    services:
+        postgresdata:
+            image: akilli/base
+            volumes:
+                - /var/lib/postgresql
+        postgres:
+            image: akilli/postgres
+            ports:
+                - "5432:5432"
+            volumes_from:
+                - postgresdata
