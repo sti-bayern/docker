@@ -4,47 +4,32 @@
 
 ## Usage
 
-Run from docker command line, p.e.
+In your `docker-compose.yml` include something like
 
-    $ docker run -d -p 80:80 -p 443:443 akilli/nginx
+    version: '2'
+    services:
+        app:
+            image: akilli/base
+            volumes:
+                - .:/var/www/html
+        php:
+            image: akilli/php
+            ports:
+                - "4000:4000"
+                - "8000:8000"
+                - "9000:9000"
+            volumes_from:
+                - app
+        nginx:
+            image: akilli/nginx
+            ports:
+                - "80:80"
+                - "443:443"
+            volumes_from:
+                - app
 
-or use docker-compose, p.e. with `docker-compose.yml` including something like
+Then browse to `http://localhost` or `https://localhost`
 
-    nginx:
-        image: akilli/nginx
-        ports:
-            - "80:80"
-            - "443:443"
-        volumes:
-            - .:/var/www/html
-
-or
-
-    app:
-        image: akilli/base
-        volumes:
-            - .:/var/www/html
-    php:
-        image: akilli/php
-        ports:
-            - "9000:9000"
-            - "9001:9001"
-        volumes_from:
-            - app
-    nginx:
-        image: akilli/nginx
-        ports:
-            - "80:80"
-            - "443:443"
-        volumes_from:
-            - app
-        links:
-            - php:php
-
-Then browse to
-
-    http://localhost
-
-or
-
-    https://localhost
+*NOTE*
+The included default site configuration file sets a PHP handler at `php:9000`, so either make sure a PHP FPM or HHVM
+container is accessible at this address and port or just overwrite the default site configuration file.
