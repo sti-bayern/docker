@@ -9,39 +9,13 @@
 
 ## Usage
 
-Run from docker command line, p.e.
+In your `docker-compose.yml` include something like
 
-    $ docker run -d -p 4000:4000 -p 8000:8000 -p 9000:9000 akilli/php
-
-or use docker-compose, p.e. with `docker-compose.yml` including something like
-
-    php:
-        image: akilli/php
-        ports:
-            - "4000:4000"
-            - "8000:8000"
-            - "9000:9000"
-
-or
-
-    app:
-        image: akilli/base
-        volumes:
-            - .:/var/www/html
-    php:
-        image: akilli/php
-        ports:
-            - "4000:4000"
-            - "8000:8000"
-            - "9000:9000"
-        volumes_from:
-            - app
-    nginx:
-        image: akilli/nginx
-        ports:
-            - "80:80"
-            - "443:443"
-        volumes_from:
-            - app
-        links:
-            - php:php
+    version: '2'
+    services:
+        php:
+            image: akilli/php
+            ports:
+                - "4000:4000"
+                - "8000:8000"
+                - "9000:9000"
