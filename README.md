@@ -30,6 +30,6 @@ In your `docker-compose.yml` include something like
 
 Then browse to `http://localhost` or `https://localhost`
 
-*NOTE*
+**NOTE**
 The included default site configuration file sets a PHP handler at `php:9000`, so either make sure a PHP FPM or HHVM
 container is accessible at this address and port or just overwrite the default site configuration file.
