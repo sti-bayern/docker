@@ -8,6 +8,12 @@ MAINTAINER Ayhan Akilli
 ENV DEBIAN_FRONTEND=noninteractive
 
 #
+# User
+#
+RUN groupmod -g 1000 www-data && \
+    usermod -u 1000 www-data
+
+#
 # APT packages
 #
 RUN apt-get update && apt-get install -y \
