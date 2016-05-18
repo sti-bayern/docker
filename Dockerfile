@@ -17,6 +17,7 @@ RUN groupmod -g 1000 www-data && \
 # APT packages
 #
 RUN apt-get update && apt-get install -y \
+    php7.0-bcmath \
     php7.0-cli \
     php7.0-common \
     php7.0-curl \
@@ -25,6 +26,8 @@ RUN apt-get update && apt-get install -y \
     php7.0-imap \
     php7.0-intl \
     php7.0-json \
+    php7.0-mbstring \
+    php7.0-mcrypt \
     php7.0-mysql \
     php7.0-pgsql \
     php7.0-phpdbg \
