@@ -17,36 +17,41 @@ RUN groupmod -g 1000 www-data && \
 # APT packages
 #
 RUN apt-get update && apt-get install -y \
-    php7.0-bcmath \
-    php7.0-cli \
-    php7.0-common \
-    php7.0-curl \
-    php7.0-fpm \
-    php7.0-gd \
-    php7.0-imap \
-    php7.0-intl \
-    php7.0-json \
-    php7.0-mbstring \
-    php7.0-mcrypt \
-    php7.0-mysql \
-    php7.0-pgsql \
-    php7.0-phpdbg \
-    php7.0-readline \
-    php7.0-soap \
-    php7.0-sqlite3 \
-    php7.0-xml \
-    php7.0-xmlrpc \
-    php7.0-zip
+    software-properties-common
+
+RUN add-apt-repository ppa:ondrej/php
+
+RUN apt-get update && apt-get install -y \
+    php7.1-bcmath \
+    php7.1-cli \
+    php7.1-common \
+    php7.1-curl \
+    php7.1-fpm \
+    php7.1-gd \
+    php7.1-imap \
+    php7.1-intl \
+    php7.1-json \
+    php7.1-mbstring \
+    php7.1-mcrypt \
+    php7.1-mysql \
+    php7.1-pgsql \
+    php7.1-phpdbg \
+    php7.1-readline \
+    php7.1-soap \
+    php7.1-sqlite3 \
+    php7.1-xml \
+    php7.1-xmlrpc \
+    php7.1-zip
 
 #
 # Configuration
 #
-COPY www.conf /etc/php/7.0/fpm/pool.d/www.conf
-COPY php.ini /etc/php/7.0/mods-available/php.ini
+COPY www.conf /etc/php/7.1/fpm/pool.d/www.conf
+COPY php.ini /etc/php/7.1/mods-available/php.ini
 
-RUN ln -s /etc/php/7.0/mods-available/php.ini /etc/php/7.0/cli/conf.d/90-php.ini && \
-    ln -s /etc/php/7.0/mods-available/php.ini /etc/php/7.0/fpm/conf.d/90-php.ini && \
-    ln -s /etc/php/7.0/mods-available/php.ini /etc/php/7.0/phpdbg/conf.d/90-php.ini && \
+RUN ln -s /etc/php/7.1/mods-available/php.ini /etc/php/7.1/cli/conf.d/90-php.ini && \
+    ln -s /etc/php/7.1/mods-available/php.ini /etc/php/7.1/fpm/conf.d/90-php.ini && \
+    ln -s /etc/php/7.1/mods-available/php.ini /etc/php/7.1/phpdbg/conf.d/90-php.ini && \
     mkdir -p /run/php
 
 #
@@ -68,4 +73,4 @@ EXPOSE 4000 8000 9000
 #
 # Command
 #
-CMD ["php-fpm7.0", "-F"]
+CMD ["php-fpm7.1", "-F"]
