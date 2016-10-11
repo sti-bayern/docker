@@ -3,9 +3,9 @@ FROM akilli/base
 MAINTAINER Ayhan Akilli
 
 #
-# Set environment variables
+# Build variables
 #
-ENV DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 
 #
 # User
@@ -28,11 +28,6 @@ COPY default.conf /etc/nginx/sites-available/default
 COPY snippets /etc/nginx/snippets
 
 RUN  echo "\ndaemon off;" >> /etc/nginx/nginx.conf
-
-#
-# Reset environment variables
-#
-ENV DEBIAN_FRONTEND=
 
 #
 # Volumes
