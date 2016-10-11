@@ -46,8 +46,8 @@ RUN apt-get update && apt-get install -y \
 #
 # Configuration
 #
-COPY www.conf /etc/php/$php/fpm/pool.d/www.conf
 COPY php.ini /etc/php/$php/mods-available/php.ini
+COPY www.conf /etc/php/$php/fpm/pool.d/www.conf
 
 RUN ln -s /etc/php/$php/mods-available/php.ini /etc/php/$php/cli/conf.d/90-php.ini && \
     ln -s /etc/php/$php/mods-available/php.ini /etc/php/$php/fpm/conf.d/90-php.ini && \
