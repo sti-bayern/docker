@@ -5,7 +5,8 @@ MAINTAINER Ayhan Akilli
 #
 # Build variables
 #
-ARG DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND=noninteractive \
+    version=7.1
 
 #
 # User
@@ -22,34 +23,34 @@ RUN apt-get update && apt-get install -y \
 RUN add-apt-repository ppa:ondrej/php
 
 RUN apt-get update && apt-get install -y \
-    php7.1-bcmath \
-    php7.1-cli \
-    php7.1-common \
-    php7.1-curl \
-    php7.1-fpm \
-    php7.1-gd \
-    php7.1-imap \
-    php7.1-intl \
-    php7.1-json \
-    php7.1-mbstring \
-    php7.1-mcrypt \
-    php7.1-mysql \
-    php7.1-pgsql \
-    php7.1-readline \
-    php7.1-soap \
-    php7.1-sqlite3 \
-    php7.1-xml \
-    php7.1-xmlrpc \
-    php7.1-zip
+    php$version-bcmath \
+    php$version-cli \
+    php$version-common \
+    php$version-curl \
+    php$version-fpm \
+    php$version-gd \
+    php$version-imap \
+    php$version-intl \
+    php$version-json \
+    php$version-mbstring \
+    php$version-mcrypt \
+    php$version-mysql \
+    php$version-pgsql \
+    php$version-readline \
+    php$version-soap \
+    php$version-sqlite3 \
+    php$version-xml \
+    php$version-xmlrpc \
+    php$version-zip
 
 #
 # Configuration
 #
-COPY www.conf /etc/php/7.1/fpm/pool.d/www.conf
-COPY php.ini /etc/php/7.1/mods-available/php.ini
+COPY www.conf /etc/php/$version/fpm/pool.d/www.conf
+COPY php.ini /etc/php/$version/mods-available/php.ini
 
-RUN ln -s /etc/php/7.1/mods-available/php.ini /etc/php/7.1/cli/conf.d/90-php.ini && \
-    ln -s /etc/php/7.1/mods-available/php.ini /etc/php/7.1/fpm/conf.d/90-php.ini && \
+RUN ln -s /etc/php/$version/mods-available/php.ini /etc/php/$version/cli/conf.d/90-php.ini && \
+    ln -s /etc/php/$version/mods-available/php.ini /etc/php/$version/fpm/conf.d/90-php.ini && \
     mkdir -p /run/php
 
 #
@@ -66,4 +67,4 @@ EXPOSE 9000
 #
 # Command
 #
-CMD ["php-fpm7.1", "-F"]
+CMD php-fpm$version -F
