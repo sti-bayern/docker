@@ -3,10 +3,14 @@ FROM akilli/base
 MAINTAINER Ayhan Akilli
 
 #
+# Build variables
+#
+ARG DEBIAN_FRONTEND=noninteractive
+
+#
 # Set environment variables
 #
-ENV DEBIAN_FRONTEND=noninteractive \
-    PG_MAJOR=9.5
+ENV PG_MAJOR=9.5
 
 #
 # APT packages
@@ -26,11 +30,6 @@ RUN rm -rf /var/lib/apt/lists/* && \
 #
 RUN echo "host all all 0.0.0.0/0  trust" >> /etc/postgresql/$PG_MAJOR/main/pg_hba.conf && \
     echo "listen_addresses='*'" >> /etc/postgresql/$PG_MAJOR/main/postgresql.conf
-
-#
-# Reset environment variables
-#
-ENV DEBIAN_FRONTEND=
 
 #
 # Volumes
