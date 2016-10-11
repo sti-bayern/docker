@@ -5,8 +5,8 @@ MAINTAINER Ayhan Akilli
 #
 # Build variables
 #
-ARG DEBIAN_FRONTEND=noninteractive \
-    version=7.1
+ARG DEBIAN_FRONTEND=noninteractive
+ARG version=7.1
 
 #
 # User
