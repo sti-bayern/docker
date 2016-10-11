@@ -3,10 +3,14 @@ FROM ubuntu:16.04
 MAINTAINER Ayhan Akilli
 
 #
+# Build variables
+#
+ARG DEBIAN_FRONTEND=noninteractive
+
+#
 # Set environment variables
 #
-ENV DEBIAN_FRONTEND=noninteractive \
-    LANG=de_DE.UTF-8 \
+ENV LANG=de_DE.UTF-8 \
     TERM=xterm \
     TZ=Europe/Berlin
 
@@ -35,8 +39,3 @@ RUN locale-gen $LANG && \
 
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo $TZ > /etc/timezone
-
-#
-# Reset environment variables
-#
-ENV DEBIAN_FRONTEND=
