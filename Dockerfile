@@ -3,9 +3,9 @@ FROM akilli/base
 MAINTAINER Ayhan Akilli
 
 #
-# Set environment variables
+# Build variables
 #
-ENV DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 
 #
 # User
@@ -57,11 +57,6 @@ RUN ln -s /etc/php/7.1/mods-available/php.ini /etc/php/7.1/cli/conf.d/90-php.ini
 #
 RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer
-
-#
-# Reset environment variables
-#
-ENV DEBIAN_FRONTEND=
 
 #
 # Ports
