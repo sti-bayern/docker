@@ -11,6 +11,4 @@ In your `docker-compose.yml` include something like
         php:
             image: akilli/php
             ports:
-                - "4000:4000"
-                - "8000:8000"
                 - "9000:9000"
