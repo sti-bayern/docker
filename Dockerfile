@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     git \
     iputils-ping \
+    iputils-tracepath \
     less \
     locales \
     nano \
