@@ -6,15 +6,19 @@ MAINTAINER Ayhan Akilli
 # Build variables
 #
 ARG DEBIAN_FRONTEND=noninteractive
+ARG PG=9.6
 
 #
-# Set environment variables
+# Environment variables
 #
-ENV PG=9.5
+ENV PG=$PG
 
 #
 # APT packages
 #
+RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
+    echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" > /etc/apt/sources.list.d/postgres.list
+
 RUN apt-get update && apt-get install -y \
     postgresql-$PG \
     postgresql-contrib-$PG
@@ -28,8 +32,9 @@ RUN rm -rf /var/lib/apt/lists/* && \
 #
 # Configuration
 #
-RUN echo "host all all 0.0.0.0/0  trust" >> /etc/postgresql/$PG/main/pg_hba.conf && \
-    echo "listen_addresses='*'" >> /etc/postgresql/$PG/main/postgresql.conf
+RUN echo "listen_addresses='*'" >> /etc/postgresql/$PG/main/postgresql.conf
+
+COPY pg_hba.conf /etc/postgresql/$PG/main/pg_hba.conf
 
 #
 # Volumes
