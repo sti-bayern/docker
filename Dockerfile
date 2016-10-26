@@ -6,13 +6,16 @@ MAINTAINER Ayhan Akilli
 # Build variables
 #
 ARG DEBIAN_FRONTEND=noninteractive
+ARG LANG=de_DE.UTF-8
+ARG TERM=xterm
+ARG TZ=Europe/Berlin
 
 #
-# Set environment variables
+# Environment variables
 #
-ENV LANG=de_DE.UTF-8 \
-    TERM=xterm \
-    TZ=Europe/Berlin
+ENV LANG=$LANG \
+    TERM=$TERM \
+    TZ=$TZ
 
 #
 # APT packages
