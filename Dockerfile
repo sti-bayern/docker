@@ -38,7 +38,6 @@ RUN apt-get update && apt-get install -y \
     php$php-intl \
     php$php-json \
     php$php-mbstring \
-    php$php-mcrypt \
     php$php-mysql \
     php$php-pgsql \
     php$php-readline \
