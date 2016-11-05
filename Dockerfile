@@ -32,7 +32,7 @@ RUN  echo "\ndaemon off;" >> /etc/nginx/nginx.conf
 #
 # Volumes
 #
-VOLUME ["/var/www/html"]
+VOLUME ["/srv"]
 
 #
 # Ports

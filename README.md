@@ -8,28 +8,23 @@ In your `docker-compose.yml` include something like
 
     version: '2'
     services:
-        app:
-            image: akilli/base
-            volumes:
-                - .:/var/www/html
         php:
             image: akilli/php
             ports:
-                - "4000:4000"
-                - "8000:8000"
                 - "9000:9000"
-            volumes_from:
-                - app
+            volumes:
+                - .:/srv
         nginx:
             image: akilli/nginx
             ports:
                 - "80:80"
                 - "443:443"
-            volumes_from:
-                - app
+            volumes:
+                - .:/srv
 
 Then browse to `http://localhost` or `https://localhost`
 
 **NOTE**
-The included default site configuration file sets a PHP handler at `php:9000`, so either make sure a PHP FPM or HHVM
-container is accessible at this address and port or just overwrite the default site configuration file.
+The included default site configuration file sets the document root to `/srv/public` and a PHP 
+handler at `php:9000`, so you have to overwrite it if this does not work for you... check out the 
+`00` folder for an example. 
