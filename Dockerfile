@@ -21,7 +21,10 @@ RUN rm -rf /var/lib/apt/lists/*
 COPY default.conf /etc/nginx/sites-available/default
 COPY snippets /etc/nginx/snippets
 
-RUN  echo "\nuser app\ndaemon off;" >> /etc/nginx/nginx.conf
+RUN echo "\nuser app\ndaemon off;" >> /etc/nginx/nginx.conf && \
+    mkdir /home/app/www/public && \
+    echo "Hello World" >> /home/app/www/public/index.html && \
+    chown -R app:app /home/app/www
 
 #
 # Volumes
