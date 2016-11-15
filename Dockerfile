@@ -21,7 +21,9 @@ ENV LANG=$LANG \
 # User
 #
 RUN groupadd -r -g 1000 app && \
-    useradd -r -u 1000 -g app -m app
+    useradd -r -u 1000 -g app -m app && \
+    mkdir /home/app/www && \
+    chown app:app /home/app/www
 
 #
 # APT packages
