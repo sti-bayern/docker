@@ -25,6 +25,6 @@ In your `docker-compose.yml` include something like
 Then browse to `http://localhost` or `https://localhost`
 
 **NOTE**
-The included default site configuration file sets the document root to `/home/app/www/public` and a PHP 
-handler at `php:9000`, so you have to overwrite it if this does not work for you... check out the 
-`00` folder for an example. 
+Uses the `app` user that is created in the `akilli/base` image. The included default site 
+configuration file sets the document root to `/home/app/www/public` and a PHP handler at `php:9000`, so you have to 
+overwrite it if this does not work for you... check out the `00` folder for an example. 
