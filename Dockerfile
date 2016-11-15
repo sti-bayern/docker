@@ -8,12 +8,6 @@ MAINTAINER Ayhan Akilli
 ARG DEBIAN_FRONTEND=noninteractive
 
 #
-# User
-#
-RUN groupmod -g 1000 www-data && \
-    usermod -u 1000 www-data
-
-#
 # APT packages
 #
 RUN apt-get update && apt-get install -y \
@@ -27,7 +21,7 @@ RUN rm -rf /var/lib/apt/lists/*
 COPY default.conf /etc/nginx/sites-available/default
 COPY snippets /etc/nginx/snippets
 
-RUN  echo "\ndaemon off;" >> /etc/nginx/nginx.conf
+RUN  echo "\nuser app\ndaemon off;" >> /etc/nginx/nginx.conf
 
 #
 # Volumes
