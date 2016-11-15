@@ -18,6 +18,12 @@ ENV LANG=$LANG \
     TZ=$TZ
 
 #
+# User
+#
+RUN groupadd -r -g 1000 app && \
+    useradd -r -u 1000 -g app -m app
+
+#
 # APT packages
 #
 RUN apt-get update && apt-get install -y \
