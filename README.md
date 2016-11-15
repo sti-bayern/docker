@@ -12,3 +12,6 @@ In your `docker-compose.yml` include something like
             image: akilli/php
             ports:
                 - "9000:9000"
+
+**NOTE**
+Uses the `app` user that is created in the `akilli/base` image.
