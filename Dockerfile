@@ -14,12 +14,6 @@ ARG php=7.1
 ENV php=$php
 
 #
-# User
-#
-RUN groupmod -g 1000 www-data && \
-    usermod -u 1000 www-data
-
-#
 # APT packages
 #
 RUN apt-get update && apt-get install -y \
