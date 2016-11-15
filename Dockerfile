@@ -26,7 +26,7 @@ RUN  echo "\nuser app\ndaemon off;" >> /etc/nginx/nginx.conf
 #
 # Volumes
 #
-VOLUME ["/srv"]
+VOLUME ["/home/app/www"]
 
 #
 # Ports
