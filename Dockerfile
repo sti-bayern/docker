@@ -26,28 +26,29 @@ RUN groupadd -r -g 1000 app && \
     chown app:app /home/app/www
 
 #
+# Locale
+#
+RUN locale-gen $LANG && \
+    update-locale LANG=$LANG && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
+    echo $TZ > /etc/timezone
+
+#
 # APT packages
 #
 RUN apt-get update && apt-get install -y \
+    apt-transport-https \
+    apt-utils \
     curl \
     git \
     iputils-ping \
     iputils-tracepath \
     less \
-    locales \
     nano \
     net-tools \
     openssl \
+    software-properties-common \
     ssl-cert \
     wget
 
 RUN rm -rf /var/lib/apt/lists/*
-
-#
-# Configuration
-#
-RUN locale-gen $LANG && \
-    update-locale LANG=$LANG
-
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
-    echo $TZ > /etc/timezone
