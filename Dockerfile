@@ -15,8 +15,6 @@ ARG POSTGRES_PWD=postgres
 #
 ENV POSTGRES=$POSTGRES \
     POSTGRES_APP_PWD=$POSTGRES_APP_PWD \
-    POSTGRES_BIN=/usr/lib/postgresql/$POSTGRES/bin \
-    POSTGRES_ETC=/etc/postgresql/$POSTGRES/main \
     POSTGRES_PWD=$POSTGRES_PWD
 
 #
@@ -38,11 +36,11 @@ RUN rm -rf /var/lib/apt/lists/* && \
 #
 # Configuration
 #
-RUN ln -s $POSTGRES_BIN/initdb /usr/bin/initdb && \
-    ln -s $POSTGRES_BIN/postgres /usr/bin/postgres && \
-    echo "listen_addresses='*'" >> $POSTGRES_ETC/postgresql.conf
+RUN ln -s /usr/lib/postgresql/$POSTGRES/bin/initdb /usr/bin/initdb && \
+    ln -s /usr/lib/postgresql/$POSTGRES/bin/postgres /usr/bin/postgres && \
+    echo "listen_addresses='*'" >> /etc/postgresql/$POSTGRES/main/postgresql.conf
 
-COPY pg_hba.conf $POSTGRES_ETC/pg_hba.conf
+COPY pg_hba.conf /etc/postgresql/$POSTGRES/main/pg_hba.conf
 
 #
 # Volumes
