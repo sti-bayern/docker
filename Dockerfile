@@ -6,49 +6,46 @@ MAINTAINER Ayhan Akilli
 # Build variables
 #
 ARG DEBIAN_FRONTEND=noninteractive
-ARG php=7.1
+ARG PHP=7.1
 
 #
 # Environment variables
 #
-ENV php=$php
+ENV PHP=$PHP
 
 #
 # APT packages
 #
-RUN apt-get update && apt-get install -y \
-    software-properties-common
-
 RUN add-apt-repository ppa:ondrej/php
 
 RUN apt-get update && apt-get install -y \
-    php$php-bcmath \
-    php$php-cli \
-    php$php-common \
-    php$php-curl \
-    php$php-fpm \
-    php$php-gd \
-    php$php-imap \
-    php$php-intl \
-    php$php-json \
-    php$php-mbstring \
-    php$php-mysql \
-    php$php-pgsql \
-    php$php-readline \
-    php$php-soap \
-    php$php-sqlite3 \
-    php$php-xml \
-    php$php-xmlrpc \
-    php$php-zip
+    php$PHP-bcmath \
+    php$PHP-cli \
+    php$PHP-common \
+    php$PHP-curl \
+    php$PHP-fpm \
+    php$PHP-gd \
+    php$PHP-imap \
+    php$PHP-intl \
+    php$PHP-json \
+    php$PHP-mbstring \
+    php$PHP-mysql \
+    php$PHP-pgsql \
+    php$PHP-readline \
+    php$PHP-soap \
+    php$PHP-sqlite3 \
+    php$PHP-xml \
+    php$PHP-xmlrpc \
+    php$PHP-zip
 
 #
 # Configuration
 #
-COPY php.ini /etc/php/$php/mods-available/php.ini
-COPY www.conf /etc/php/$php/fpm/pool.d/www.conf
+COPY php.ini /etc/php/$PHP/mods-available/php.ini
+COPY www.conf /etc/php/$PHP/fpm/pool.d/www.conf
 
-RUN ln -s /etc/php/$php/mods-available/php.ini /etc/php/$php/cli/conf.d/90-php.ini && \
-    ln -s /etc/php/$php/mods-available/php.ini /etc/php/$php/fpm/conf.d/90-php.ini && \
+RUN ln -s /etc/php/$PHP/mods-available/php.ini /etc/php/$PHP/cli/conf.d/90-php.ini && \
+    ln -s /etc/php/$PHP/mods-available/php.ini /etc/php/$PHP/fpm/conf.d/90-php.ini && \
     mkdir -p /run/php
 
 #
@@ -65,4 +62,4 @@ EXPOSE 9000
 #
 # Command
 #
-CMD php-fpm$php -F
+CMD php-fpm$PHP -F
