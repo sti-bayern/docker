@@ -13,7 +13,8 @@ ARG POSTGRES_PWD=postgres
 #
 # Environment variables
 #
-ENV POSTGRES=$POSTGRES \
+ENV PATH=/usr/lib/postgresql/$POSTGRES/bin:$PATH \
+    POSTGRES=$POSTGRES \
     POSTGRES_APP_PWD=$POSTGRES_APP_PWD \
     POSTGRES_PWD=$POSTGRES_PWD
 
@@ -36,9 +37,7 @@ RUN rm -rf /var/lib/apt/lists/* && \
 #
 # Configuration
 #
-RUN ln -s /usr/lib/postgresql/$POSTGRES/bin/initdb /usr/bin/initdb && \
-    ln -s /usr/lib/postgresql/$POSTGRES/bin/postgres /usr/bin/postgres && \
-    echo "listen_addresses='*'" >> /etc/postgresql/$POSTGRES/main/postgresql.conf
+RUN echo "listen_addresses='*'" >> /etc/postgresql/$POSTGRES/main/postgresql.conf
 
 COPY pg_hba.conf /etc/postgresql/$POSTGRES/main/pg_hba.conf
 
