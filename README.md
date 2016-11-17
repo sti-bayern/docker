@@ -27,6 +27,4 @@ or with a separate data volume
                 - postgresdata:/var/lib/postgresql
 
 **NOTE**
-Uses the `app` user that is created in the `akilli/base` image. Creates a corresponing role and a database named `app`.
-Please see Dockerfile for supported build args to adjust Postgres version and passwords for both roles `postgres` and 
-`app`.
+Creates a user + database named `app`. Please see Dockerfile for supported build args to adjust passwords.
