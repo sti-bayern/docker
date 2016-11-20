@@ -11,9 +11,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 # APT packages
 #
 RUN apt-get update && apt-get install -y \
-    nginx
-
-RUN rm -rf /var/lib/apt/lists/*
+    nginx && \
+    rm -rf /var/lib/apt/lists/*
 
 #
 # Configuration
