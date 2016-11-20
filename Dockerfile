@@ -36,7 +36,8 @@ RUN apt-get update && apt-get install -y \
     php$PHP-sqlite3 \
     php$PHP-xml \
     php$PHP-xmlrpc \
-    php$PHP-zip
+    php$PHP-zip && \
+    rm -rf /var/lib/apt/lists/*
 
 #
 # Configuration
