@@ -26,10 +26,10 @@ RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-k
 
 RUN apt-get update && apt-get install -y \
     postgresql-$PG \
-    postgresql-contrib-$PG
+    postgresql-contrib-$PG && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN rm -rf /var/lib/apt/lists/* && \
-    rm -rf /var/lib/postgresql && \
+RUN rm -rf /var/lib/postgresql && \
     mkdir -p /var/lib/postgresql && \
     mkdir -p /var/run/postgresql/$PG-main.pg_stat_tmp && \
     chown postgres:postgres /var/run/postgresql/$PG-main.pg_stat_tmp
