@@ -49,6 +49,5 @@ RUN apt-get update && apt-get install -y \
     openssl \
     software-properties-common \
     ssl-cert \
-    wget
-
-RUN rm -rf /var/lib/apt/lists/*
+    wget && \
+    rm -rf /var/lib/apt/lists/*
