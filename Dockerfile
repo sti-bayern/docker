@@ -18,25 +18,17 @@ ENV LANG=$LANG \
     TZ=$TZ
 
 #
-# User
+# Setup
 #
 RUN groupadd -r -g 1000 app && \
     useradd -r -u 1000 -g app -m app && \
     mkdir /home/app/www && \
-    chown app:app /home/app/www
-
-#
-# Locale
-#
-RUN locale-gen $LANG && \
+    chown app:app /home/app/www && \
+    locale-gen $LANG && \
     update-locale LANG=$LANG && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
-    echo $TZ > /etc/timezone
-
-#
-# APT packages
-#
-RUN apt-get update && apt-get install -y \
+    echo $TZ > /etc/timezone && \
+    apt-get update && apt-get install -y \
     apt-transport-https \
     apt-utils \
     curl \
