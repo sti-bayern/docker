@@ -14,11 +14,10 @@ ARG PHP=7.1
 ENV PHP=$PHP
 
 #
-# APT packages
+# Setup
 #
-RUN add-apt-repository ppa:ondrej/php
-
-RUN apt-get update && apt-get install -y \
+RUN add-apt-repository ppa:ondrej/php && \
+    apt-get update && apt-get install -y \
     php$PHP-bcmath \
     php$PHP-cli \
     php$PHP-common \
@@ -37,23 +36,15 @@ RUN apt-get update && apt-get install -y \
     php$PHP-xml \
     php$PHP-xmlrpc \
     php$PHP-zip && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    mkdir -p /run/php && \
+    ln -s ../../mods-available/php.ini /etc/php/$PHP/cli/conf.d/90-php.ini && \
+    ln -s ../../mods-available/php.ini /etc/php/$PHP/fpm/conf.d/90-php.ini && \
+    curl -sS https://getcomposer.org/installer | php && \
+    mv composer.phar /usr/local/bin/composer
 
-#
-# Configuration
-#
 COPY php.ini /etc/php/$PHP/mods-available/php.ini
 COPY www.conf /etc/php/$PHP/fpm/pool.d/www.conf
-
-RUN ln -s /etc/php/$PHP/mods-available/php.ini /etc/php/$PHP/cli/conf.d/90-php.ini && \
-    ln -s /etc/php/$PHP/mods-available/php.ini /etc/php/$PHP/fpm/conf.d/90-php.ini && \
-    mkdir -p /run/php
-
-#
-# Composer
-#
-RUN curl -sS https://getcomposer.org/installer | php && \
-    mv composer.phar /usr/local/bin/composer
 
 #
 # Ports
