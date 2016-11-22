@@ -9,6 +9,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 ARG LANG=de_DE.UTF-8
 ARG TERM=xterm
 ARG TZ=Europe/Berlin
+ARG USER_UID=1000
+ARG USER_GID=1000
 
 #
 # Environment variables
@@ -20,8 +22,8 @@ ENV LANG=$LANG \
 #
 # Setup
 #
-RUN groupadd -r -g 1000 app && \
-    useradd -r -u 1000 -g app -m app && \
+RUN groupadd -r -g $USER_GID app && \
+    useradd -r -u $USER_UID -g app -m app && \
     mkdir /home/app/www && \
     chown app:app /home/app/www && \
     locale-gen $LANG && \
