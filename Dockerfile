@@ -19,25 +19,19 @@ ENV PATH=/usr/lib/postgresql/$PG/bin:$PATH \
     PG_ROOT=$PG_ROOT
 
 #
-# APT packages
+# Setup
 #
 RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
-    echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" > /etc/apt/sources.list.d/postgres.list
-
-RUN apt-get update && apt-get install -y \
+    echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" > /etc/apt/sources.list.d/postgres.list && \
+    apt-get update && apt-get install -y \
     postgresql-$PG \
     postgresql-contrib-$PG && \
-    rm -rf /var/lib/apt/lists/*
-
-RUN rm -rf /var/lib/postgresql && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /var/lib/postgresql && \
     mkdir -p /var/lib/postgresql && \
     mkdir -p /var/run/postgresql/$PG-main.pg_stat_tmp && \
-    chown postgres:postgres /var/run/postgresql/$PG-main.pg_stat_tmp
-
-#
-# Configuration
-#
-RUN echo "listen_addresses='*'" >> /etc/postgresql/$PG/main/postgresql.conf
+    chown postgres:postgres /var/run/postgresql/$PG-main.pg_stat_tmp && \
+    echo "listen_addresses='*'" >> /etc/postgresql/$PG/main/postgresql.conf
 
 COPY pg_hba.conf /etc/postgresql/$PG/main/pg_hba.conf
 
