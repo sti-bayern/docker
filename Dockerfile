@@ -17,25 +17,28 @@ ENV PHP=$PHP
 # Setup
 #
 RUN add-apt-repository ppa:ondrej/php && \
-    apt-get update && apt-get install -y \
-    php$PHP-bcmath \
-    php$PHP-cli \
-    php$PHP-common \
-    php$PHP-curl \
-    php$PHP-fpm \
-    php$PHP-gd \
-    php$PHP-imap \
-    php$PHP-intl \
-    php$PHP-json \
-    php$PHP-mbstring \
-    php$PHP-mysql \
-    php$PHP-pgsql \
-    php$PHP-readline \
-    php$PHP-soap \
-    php$PHP-sqlite3 \
-    php$PHP-xml \
-    php$PHP-xmlrpc \
-    php$PHP-zip && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
+        php$PHP-bcmath \
+        php$PHP-cli \
+        php$PHP-common \
+        php$PHP-curl \
+        php$PHP-fpm \
+        php$PHP-gd \
+        php$PHP-imap \
+        php$PHP-intl \
+        php$PHP-json \
+        php$PHP-mbstring \
+        php$PHP-mysql \
+        php$PHP-pgsql \
+        php$PHP-readline \
+        php$PHP-soap \
+        php$PHP-sqlite3 \
+        php$PHP-xml \
+        php$PHP-xmlrpc \
+        php$PHP-zip && \
+    apt-get autoremove --purge && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir -p /run/php && \
     ln -s ../../mods-available/php.ini /etc/php/$PHP/cli/conf.d/90-php.ini && \
