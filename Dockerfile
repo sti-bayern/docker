@@ -10,8 +10,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 #
 # Setup
 #
-RUN apt-get update && apt-get install -y \
-    nginx && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        nginx && \
+    apt-get autoremove --purge && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     echo "\nuser app\ndaemon off;" >> /etc/nginx/nginx.conf && \
     mkdir /home/app/www/public && \
