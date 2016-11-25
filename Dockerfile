@@ -21,7 +21,7 @@ ENV PATH=/usr/lib/postgresql/$PG/bin:$PATH \
 #
 # Setup
 #
-RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
+RUN wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
     echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" > /etc/apt/sources.list.d/postgres.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
