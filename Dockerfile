@@ -17,9 +17,9 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     echo "\nuser app\ndaemon off;" >> /etc/nginx/nginx.conf && \
-    mkdir /home/app/www/public && \
-    echo "Hello World" >> /home/app/www/public/index.html && \
-    chown -R app:app /home/app/www
+    mkdir /home/app/root/public && \
+    echo "Hello World" >> /home/app/root/public/index.html && \
+    chown -R app:app /home/app/root
 
 COPY default.conf /etc/nginx/sites-available/default
 COPY snippets /etc/nginx/snippets
@@ -27,7 +27,7 @@ COPY snippets /etc/nginx/snippets
 #
 # Volumes
 #
-VOLUME ["/home/app/www"]
+VOLUME ["/home/app/root"]
 
 #
 # Ports
