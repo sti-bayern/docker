@@ -14,6 +14,7 @@ In your `docker-compose.yml` include something like
                 - "80:8080"
             volumes:
                 - /var/run/docker.sock:/var/run/docker.sock
+            privileged: true
 
 or with a separate data volume
 
@@ -28,6 +29,7 @@ or with a separate data volume
             volumes:
                 - jenkinsdata:/home/app/root
                 - /var/run/docker.sock:/var/run/docker.sock
+            privileged: true
 
 Then browse to `http://localhost`
 
