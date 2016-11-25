@@ -24,8 +24,8 @@ ENV LANG=$LANG \
 #
 RUN groupadd -r -g $USER_GID app && \
     useradd -r -u $USER_UID -g app -m app && \
-    mkdir /home/app/www && \
-    chown app:app /home/app/www && \
+    mkdir /home/app/root && \
+    chown app:app /home/app/root && \
     locale-gen $LANG && \
     update-locale LANG=$LANG && \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
