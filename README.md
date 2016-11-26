@@ -11,7 +11,7 @@ In your `docker-compose.yml` include something like
         jenkins:
             image: akilli/jenkins
             ports:
-                - "80:8080"
+                - "8080:8080"
             volumes:
                 - /var/run/docker.sock:/var/run/docker.sock
             privileged: true
@@ -25,13 +25,13 @@ or with a separate data volume
         jenkins:
             image: akilli/jenkins
             ports:
-                - "80:8080"
+                - "8080:8080"
             volumes:
                 - jenkinsdata:/home/app/root
                 - /var/run/docker.sock:/var/run/docker.sock
             privileged: true
 
-Then browse to `http://localhost`
+Then browse to `http://localhost:8080`
 
 **NOTE**
 Uses the `app` user that is created in the `akilli/base` image. 
