@@ -30,4 +30,3 @@ Then browse to `http://localhost:3000`
 
 **NOTE**
 Uses the `app` user that is created in the `akilli/base` image.
-
