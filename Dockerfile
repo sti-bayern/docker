@@ -34,4 +34,6 @@ EXPOSE 3000
 #
 # Command
 #
+USER app
+
 CMD ["/opt/gogs/gogs", "web"]
