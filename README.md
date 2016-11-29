@@ -1,6 +1,6 @@
 # akilli/php
 
-`akilli/base` based PHP 7 image.
+`akilli/base` based PHP image.
 
 ## Usage
 
