@@ -1,4 +1,4 @@
-# nginx
+# akilli/nginx
 
 `akilli/base` based nginx image
 
