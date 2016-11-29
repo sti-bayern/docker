@@ -1,0 +1,23 @@
+#
+# DEV
+#
+.buildpath
+.idea
+*.iml
+/nbproject
+.project
+.settings
+.vagrant
+
+#
+# Misc
+#
+*~
+\#*
+.\#*
+.DS_Store
+ehthumbs.db
+Icon?
+.sw[ponm]
+[Tt]humbs.db
+.tmp_*
