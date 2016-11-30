@@ -6,6 +6,7 @@ MAINTAINER Ayhan Akilli
 # Build variables
 #
 ARG DEBIAN_FRONTEND=noninteractive
+ARG DC=1.9.0
 
 #
 # Environment variables
@@ -26,6 +27,8 @@ RUN wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | apt-key a
     apt-get autoremove --purge && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
+    curl -L https://github.com/docker/compose/releases/download/$DC/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose && \
+    chmod +x /usr/local/bin/docker-compose && \
     usermod -aG docker app && \
     chown -R app:app /var/cache/jenkins
 #
