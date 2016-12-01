@@ -23,16 +23,24 @@ RUN wget -qO - https://deb.packager.io/key | apt-key add - && \
     apt-get autoremove --purge && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
-    chown -R app:app /opt/gogs && \
-    chown -R app:app /var/log/gogs && \
+    mkdir -p \
+        /home/app/root/custom/conf \
+        /home/app/root/data \
+        /home/app/root/git && \
+    ln -sf /home/app/root/custom /opt/gogs/custom && \
+    ln -sf /home/app/root/data /opt/gogs/data && \
+    chown -R app:app \
+        /home/app
+        /opt/gogs
+        /var/log/gogs && \
     deluser --remove-home gogs
 
-COPY app.ini /opt/gogs/custom/conf/app.ini
+COPY app.ini /home/app/root/custom/conf/app.ini
 
 #
 # Volumes
 #
-VOLUME ["/opt/gogs/data"]
+VOLUME ["/home/app/root"]
 
 #
 # Ports
