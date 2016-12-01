@@ -30,8 +30,8 @@ RUN wget -qO - https://deb.packager.io/key | apt-key add - && \
     ln -sf /home/app/root/custom /opt/gogs/custom && \
     ln -sf /home/app/root/data /opt/gogs/data && \
     chown -R app:app \
-        /home/app
-        /opt/gogs
+        /home/app \
+        /opt/gogs \
         /var/log/gogs && \
     deluser --remove-home gogs
 
