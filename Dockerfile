@@ -16,11 +16,11 @@ RUN apt-get update && \
     apt-get autoremove --purge && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
-    echo "\nuser app\ndaemon off;" >> /etc/nginx/nginx.conf && \
     mkdir /home/app/root/public && \
     echo "Hello World" >> /home/app/root/public/index.html && \
     chown -R app:app /home/app/root
 
+COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf /etc/nginx/sites-available/default
 COPY snippets /etc/nginx/snippets
 
