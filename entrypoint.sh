@@ -2,8 +2,7 @@
 
 set -e
 
-chown -R postgres:postgres /var/lib/postgresql
-chown -R postgres:postgres /run/postgresql
+chown -R postgres:postgres /var/lib/postgresql /run/postgresql
 
 if [ -z "$(ls -A /var/lib/postgresql)" ]; then
     su postgres -c "mkdir -p /var/lib/postgresql/$PG/main"
