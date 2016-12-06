@@ -20,7 +20,7 @@ RUN apt-get update && \
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY default.conf /etc/nginx/sites-available/default
-COPY snippets /etc/nginx/snippets
+COPY snippets/base.conf /etc/nginx/snippets/base.conf
 
 #
 # Volumes
