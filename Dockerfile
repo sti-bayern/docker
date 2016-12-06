@@ -16,8 +16,6 @@ RUN apt-get update && \
     apt-get autoremove --purge && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
-    mkdir /app/public && \
-    echo "Hello World" >> /app/public/index.html && \
     chown -R app:app /app
 
 COPY nginx.conf /etc/nginx/nginx.conf
