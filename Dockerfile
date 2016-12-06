@@ -11,7 +11,7 @@ ARG DC=1.9.0
 #
 # Environment variables
 #
-ENV JENKINS_HOME=/home/app/root
+ENV JENKINS_HOME=/app
 
 #
 # Setup
@@ -34,7 +34,7 @@ RUN wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | apt-key a
 #
 # Volumes
 #
-VOLUME ["/home/app/root"]
+VOLUME ["/app"]
 
 #
 # Ports

@@ -27,7 +27,7 @@ or with a separate data volume
             ports:
                 - "8080:8080"
             volumes:
-                - jenkinsdata:/home/app/root
+                - jenkinsdata:/app
                 - /var/run/docker.sock:/var/run/docker.sock
             privileged: true
 
