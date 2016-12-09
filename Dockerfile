@@ -8,11 +8,6 @@ MAINTAINER Ayhan Akilli
 ARG DEBIAN_FRONTEND=noninteractive
 
 #
-# Environment variables
-#
-ENV USER=app
-
-#
 # Setup
 #
 RUN wget -qO - https://deb.packager.io/key | apt-key add - && \
@@ -24,23 +19,22 @@ RUN wget -qO - https://deb.packager.io/key | apt-key add - && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir -p \
-        /app/custom/conf \
-        /app/data \
-        /app/git && \
-    ln -sf /app/custom /opt/gogs/custom && \
-    ln -sf /app/data /opt/gogs/data && \
-    chown -R app:app \
-        /app \
+        /data/custom/conf \
+        /data/gogs \
+        /data/git && \
+    ln -sf /data/custom /opt/gogs/custom && \
+    ln -sf /data/gogs /opt/gogs/data && \
+    chown -R gogs:gogs \
+        /data \
         /opt/gogs \
-        /var/log/gogs && \
-    deluser --remove-home gogs
+        /var/log/gogs
 
-COPY app.ini /app/custom/conf/app.ini
+COPY app.ini /data/custom/conf/app.ini
 
 #
 # Volumes
 #
-VOLUME ["/app"]
+VOLUME ["/data"]
 
 #
 # Ports

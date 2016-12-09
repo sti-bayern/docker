@@ -2,6 +2,6 @@
 
 set -e
 
-chown -R app:app /app /opt/gogs /var/log/gogs
+chown -R gogs:gogs /data /opt/gogs /var/log/gogs
 
-su app -c "/opt/gogs/gogs web"
+su gogs -c "/opt/gogs/gogs web"

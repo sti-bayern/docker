@@ -15,9 +15,6 @@ In your `docker-compose.yml` include something like
             ports:
                 - "3000:3000"
             volumes:
-                - gogsdata:/app
+                - gogsdata:/data
 
 Then browse to `http://localhost:3000`
-
-**NOTE**
-Uses the `app` user that is created in the `akilli/base` image.
