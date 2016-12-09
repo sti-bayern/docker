@@ -7,7 +7,6 @@ MAINTAINER Ayhan Akilli
 #
 ARG DEBIAN_FRONTEND=noninteractive
 ARG PG=9.6
-ARG PG_APP=app
 ARG PG_ROOT=postgres
 
 #
@@ -15,7 +14,6 @@ ARG PG_ROOT=postgres
 #
 ENV PATH=/usr/lib/postgresql/$PG/bin:$PATH \
     PG=$PG \
-    PG_APP=$PG_APP \
     PG_ROOT=$PG_ROOT
 
 #
