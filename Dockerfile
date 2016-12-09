@@ -9,11 +9,6 @@ ARG DEBIAN_FRONTEND=noninteractive
 ARG DC=1.9.0
 
 #
-# Environment variables
-#
-ENV JENKINS_HOME=/app
-
-#
 # Setup
 #
 RUN wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | apt-key add - && \
@@ -29,12 +24,11 @@ RUN wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | apt-key a
     rm -rf /var/lib/apt/lists/* && \
     curl -L https://github.com/docker/compose/releases/download/$DC/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose && \
     chmod +x /usr/local/bin/docker-compose && \
-    usermod -aG docker app && \
-    chown -R app:app /var/cache/jenkins
+    usermod -aG docker jenkins
 #
 # Volumes
 #
-VOLUME ["/app"]
+VOLUME ["/var/lib/jenkins"]
 
 #
 # Ports
@@ -44,6 +38,6 @@ EXPOSE 8080
 #
 # Command
 #
-USER app
+USER jenkins
 
 CMD ["java", "-Djava.awt.headless=true", "-jar", "/usr/share/jenkins/jenkins.war", "--webroot=/var/cache/jenkins/war", "--httpPort=8080"]
