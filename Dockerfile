@@ -24,11 +24,6 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY snippets/ /etc/nginx/snippets/
 
 #
-# Volumes
-#
-VOLUME ["/app"]
-
-#
 # Ports
 #
 EXPOSE 80 443
