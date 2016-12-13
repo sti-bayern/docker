@@ -18,10 +18,12 @@ RUN apt-get update && \
     rm -rf \
         /var/lib/apt/lists/* \
         /etc/nginx/sites-enabled/* \
-        /etc/nginx/sites-available/*
+        /etc/nginx/sites-available/* && \
+    ln -s ../sites-available/default.conf /etc/nginx/sites-enabled/default.conf
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY snippets/ /etc/nginx/snippets/
+COPY default.conf /etc/nginx/sites-available/default.conf
 
 #
 # Ports
