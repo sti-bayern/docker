@@ -3,6 +3,8 @@
 set -e
 
 chown -R postgres:postgres /var/lib/postgresql /run/postgresql
+find /var/lib/postgresql -type d -exec chmod 700 {} \;
+find /var/lib/postgresql -type f -exec chmod 600 {} \;
 
 if [ -z "$(ls -A /var/lib/postgresql)" ]; then
     su postgres -c "mkdir -p /var/lib/postgresql/$PG/main"
