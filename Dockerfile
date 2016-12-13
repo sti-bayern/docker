@@ -30,6 +30,7 @@ RUN add-apt-repository ppa:ondrej/php && \
         php$PHP-json \
         php$PHP-mbstring \
         php$PHP-mysql \
+        php$PHP-opcache \
         php$PHP-pgsql \
         php$PHP-readline \
         php$PHP-soap \
