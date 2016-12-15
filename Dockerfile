@@ -19,6 +19,7 @@ ENV PHP=$PHP
 RUN add-apt-repository ppa:ondrej/php && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
+        pdftk \
         php$PHP-bcmath \
         php$PHP-cli \
         php$PHP-common \
