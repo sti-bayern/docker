@@ -8,16 +8,15 @@ In your `docker-compose.yml` include something like
 
     version: '2'
     volumes:
-        jenkinsdata: {}
+        jenkins-data: {}
     services:
         jenkins:
             image: akilli/jenkins
             ports:
                 - "8080:8080"
             volumes:
-                - jenkinsdata:/var/lib/jenkins
+                - jenkins-data:/var/lib/jenkins
                 - /var/run/docker.sock:/var/run/docker.sock
-            privileged: true
 
 Then browse to `http://localhost:8080`
 
