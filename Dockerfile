@@ -19,7 +19,8 @@ RUN apt-get update && \
         /var/lib/apt/lists/* \
         /etc/nginx/sites-enabled/* \
         /etc/nginx/sites-available/* && \
-    ln -s ../sites-available/default.conf /etc/nginx/sites-enabled/default.conf
+    ln -s ../sites-available/default.conf /etc/nginx/sites-enabled/default.conf && \
+    openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY snippets/ /etc/nginx/snippets/
