@@ -6,7 +6,7 @@
 
 In your `docker-compose.yml` include something like
 
-    version: '2'
+    version: '3'
     volumes:
         jenkins-data: {}
     services:
