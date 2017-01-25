@@ -23,8 +23,8 @@ RUN apt-get update && \
     openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY snippets/ /etc/nginx/snippets/
 COPY default.conf /etc/nginx/sites-available/default.conf
+COPY snippets/ /etc/nginx/snippets/
 
 #
 # Ports
