@@ -38,6 +38,7 @@ RUN groupadd -r -g $USER_GID app && \
         less \
         nano \
         openssl \
+        ssl-cert \
         wget && \
     apt-get autoremove --purge && \
     apt-get clean && \
