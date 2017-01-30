@@ -16,10 +16,10 @@ ENV PHP=$PHP
 #
 # Setup
 #
-RUN add-apt-repository ppa:ondrej/php && \
+RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com E5267A6C && \
+    echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt/sources.list.d/php.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-        pdftk \
         php$PHP-bcmath \
         php$PHP-cli \
         php$PHP-common \
