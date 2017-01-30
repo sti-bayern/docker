@@ -33,10 +33,11 @@ RUN groupadd -r -g $USER_GID app && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
         apt-transport-https \
+        ca-certificates \
         curl \
         less \
         nano \
-        ssl-cert \
+        openssl \
         wget && \
     apt-get autoremove --purge && \
     apt-get clean && \
