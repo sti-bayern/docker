@@ -6,7 +6,7 @@ MAINTAINER Ayhan Akilli
 # Build variables
 #
 ARG DEBIAN_FRONTEND=noninteractive
-ARG DC=1.10.0
+ARG DC=1.11.2
 
 #
 # Setup
