@@ -20,7 +20,7 @@ RUN apt-get update && \
         /etc/nginx/sites-enabled/* \
         /etc/nginx/sites-available/* && \
     ln -s ../sites-available/default.conf /etc/nginx/sites-enabled/default.conf && \
-    openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+    openssl dhparam -out /etc/ssl/certs/dhparam.pem 4096
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY sites/ /etc/nginx/sites-available/
