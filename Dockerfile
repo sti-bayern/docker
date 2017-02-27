@@ -33,7 +33,6 @@ RUN groupadd -r -g $USER_GID app && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
         apt-transport-https \
-        apt-utils \
         ca-certificates \
         curl \
         git \
@@ -41,9 +40,7 @@ RUN groupadd -r -g $USER_GID app && \
         iputils-tracepath \
         less \
         nano \
-        net-tools \
         openssl \
-        software-properties-common \
         ssl-cert \
         wget && \
     apt-get autoremove --purge && \
