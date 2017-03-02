@@ -13,7 +13,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 COPY app.ini /data/custom/conf/app.ini
 
 RUN wget -qO - https://deb.packager.io/key | apt-key add - && \
-    echo "deb https://deb.packager.io/gh/pkgr/gogs trusty pkgr" > /etc/apt/sources.list.d/gogs.list && \
+    echo "deb https://deb.packager.io/gh/pkgr/gogs xenial pkgr" > /etc/apt/sources.list.d/gogs.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
         gogs && \
