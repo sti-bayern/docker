@@ -29,7 +29,7 @@ VOLUME ["/data"]
 #
 # Ports
 #
-EXPOSE 22 3000
+EXPOSE 3000
 
 #
 # Command
