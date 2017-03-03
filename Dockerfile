@@ -17,13 +17,9 @@ RUN wget -qO - https://deb.packager.io/key | apt-key add - && \
         gogs && \
     apt-get autoremove --purge && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
-    mkdir -p \
-        /data/gogs \
-        /data/git && \
-    chown -R gogs:gogs /data
+    rm -rf /var/lib/apt/lists/*
 
-COPY app.ini /etc/gogs/conf/app.ini
+COPY app.ini /opt/gogs/custom/conf/app.ini
 
 #
 # Volumes
@@ -38,6 +34,6 @@ EXPOSE 3000
 #
 # Command
 #
-COPY entrypoint.sh /entrypoint.sh
+USER gogs
 
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["/opt/gogs/gogs", "web"]
