@@ -20,9 +20,10 @@ RUN apt-get update && \
         /etc/nginx/sites-enabled \
         /etc/nginx/sites-available && \
     mkdir /etc/nginx/ssl && \
-    ln -s /etc/ssl/certs/ssl-cert-snakeoil.pem /etc/nginx/ssl/loc.pem && \
-    ln -s /etc/ssl/private/ssl-cert-snakeoil.key /etc/nginx/ssl/loc.key && \
-    openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+    cp /etc/ssl/certs/ssl-cert-snakeoil.pem /etc/nginx/ssl/chain.pem && \
+    cp /etc/ssl/certs/ssl-cert-snakeoil.pem /etc/nginx/ssl/fullchain.pem && \
+    cp /etc/ssl/private/ssl-cert-snakeoil.key /etc/nginx/ssl/privkey.pem && \
+    openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048
 
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY snippets/ /etc/nginx/snippets/
