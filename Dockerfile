@@ -20,15 +20,8 @@ RUN apt-get update && \
         /etc/nginx/sites-enabled \
         /etc/nginx/sites-available && \
     mkdir /etc/nginx/ssl && \
-    openssl \
-        req -x509 \
-        -nodes \
-        -sha256 \
-        -days 365 \
-        -newkey rsa:2048 \
-        -keyout /etc/nginx/ssl/loc.key \
-        -out /etc/nginx/ssl/loc.crt \
-        -subj "/C=DE/ST=/L=LOCation/O=LOC/CN=*.loc" && \
+    ln -s /etc/ssl/certs/ssl-cert-snakeoil.pem /etc/nginx/ssl/loc.pem && \
+    ln -s /etc/ssl/private/ssl-cert-snakeoil.key /etc/nginx/ssl/loc.key && \
     openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 
 COPY nginx.conf /etc/nginx/nginx.conf
