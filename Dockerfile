@@ -13,27 +13,32 @@ ARG DC=1.11.2
 #
 ENV JENKINS_HOME=/app \
     JENKINS_GROUP=app \
+    JENKINS_URL=https://updates.jenkins-ci.org/latest/jenkins.war \
     JENKINS_USER=app
 
 #
 # Setup
 #
-RUN wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | apt-key add - && \
-    echo "deb https://pkg.jenkins.io/debian-stable binary/" > /etc/apt/sources.list.d/jenkins.list && \
-    apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net --recv-keys 58118E89F3A912897C070ADBF76221572C52609D && \
-    echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" > /etc/apt/sources.list.d/docker.list && \
+RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
+    echo "deb https://download.docker.com/linux/ubuntu xenial stable" > /etc/apt/sources.list.d/docker.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends \
-        docker-engine \
-        jenkins && \
+        docker-ce \
+        openjdk-8-jdk-headless && \
     apt-get autoremove --purge && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
+    mkdir -p \
+        /usr/share/jenkins \
+        /var/cache/jenkins/war \
+        /var/log/jenkins && \
+    curl -fsSL $JENKINS_URL -o /usr/share/jenkins/jenkins.war && \
     curl -L https://github.com/docker/compose/releases/download/$DC/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose && \
     chmod +x /usr/local/bin/docker-compose && \
     usermod -aG docker app && \
     chown -R app:app \
         /app \
+        /usr/share/jenkins \
         /var/cache/jenkins \
         /var/log/jenkins
 #
@@ -49,6 +54,6 @@ EXPOSE 8080
 #
 # Command
 #
-USER app
+COPY entrypoint.sh /entrypoint.sh
 
-CMD ["java", "-Djava.awt.headless=true", "-jar", "/usr/share/jenkins/jenkins.war", "--webroot=/var/cache/jenkins/war", "--httpPort=8080"]
+ENTRYPOINT ["/entrypoint.sh"]
