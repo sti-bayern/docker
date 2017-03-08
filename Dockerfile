@@ -46,8 +46,8 @@ RUN apt-get -y update && \
        /usr/local/go && \
     mkdir -p \
         /app/log \
-        /data/app \
-        /data/git && \
+        /data/git \
+        /data/gogs && \
     chown -R app:app \
         /app \
         /data
