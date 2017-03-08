@@ -1,6 +1,6 @@
 FROM ubuntu
 
-MAINTAINER Ayhan Akilli
+LABEL maintainer "Ayhan Akilli"
 
 #
 # Build variables
