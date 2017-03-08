@@ -21,12 +21,12 @@ ENV JENKINS_HOME=/app \
 #
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
     echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable" > /etc/apt/sources.list.d/docker.list && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends \
+    apt-get -y update && \
+    apt-get -y --no-install-recommends install \
         docker-ce \
         openjdk-8-jdk-headless && \
-    apt-get autoremove --purge && \
-    apt-get clean && \
+    apt-get -y --purge autoremove && \
+    apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir -p \
         /usr/share/jenkins \
