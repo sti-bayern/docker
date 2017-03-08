@@ -29,7 +29,7 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir -p \
-        /data
+        /data \
         /var/cache/jenkins/war \
         /var/log/jenkins && \
     curl -fsSL $JENKINS_URL -o /app/jenkins.war && \
