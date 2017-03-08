@@ -21,5 +21,4 @@ In your `docker-compose.yml` include something like
 Then browse to `http://localhost:8080`
 
 **NOTE**
-Runs as `app` user that is created in the `akilli/base` image. **The `app` user is added to the docker group so that he 
-is allowed to execute docker commands.**  
+Runs as `app` user that is created in the `akilli/base` image. **The `app` user is added to the docker group so that he is allowed to execute docker commands.**  
