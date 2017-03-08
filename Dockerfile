@@ -18,8 +18,8 @@ ENV PHP=$PHP
 #
 RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com E5267A6C && \
     echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt/sources.list.d/php.list && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends \
+    apt-get -y update && \
+    apt-get -y --no-install-recommends install \
         php$PHP-bcmath \
         php$PHP-cli \
         php$PHP-common \
@@ -39,8 +39,8 @@ RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com E5267A6C && \
         php$PHP-xml \
         php$PHP-xmlrpc \
         php$PHP-zip && \
-    apt-get autoremove --purge && \
-    apt-get clean && \
+    apt-get -y --purge autoremove && \
+    apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir -p /run/php && \
     ln -s ../../mods-available/php.ini /etc/php/$PHP/cli/conf.d/90-php.ini && \
