@@ -18,3 +18,6 @@ In your `docker-compose.yml` include something like
                 - gogs:/data
 
 Then browse to `http://localhost:3000`
+
+**NOTE**
+Runs as `app` user that is created in the `akilli/base` image.
