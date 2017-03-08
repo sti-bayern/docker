@@ -1,6 +1,6 @@
 FROM akilli/base
 
-MAINTAINER Ayhan Akilli
+LABEL maintainer "Ayhan Akilli"
 
 #
 # Build variables
