@@ -1,6 +1,6 @@
 # akilli/gogs
 
-`akilli/base` based Gogs image
+`akilli/base` based Gogs image including MySQL, PostgreSQL, SQLite and TiDB support.
 
 ## Usage
 
