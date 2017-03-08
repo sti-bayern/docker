@@ -10,11 +10,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 #
 # Setup
 #
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
+RUN apt-get -y update && \
+    apt-get -y --no-install-recommends install \
         nginx && \
-    apt-get autoremove --purge && \
-    apt-get clean && \
+    apt-get -y --purge autoremove && \
+    apt-get -y clean && \
     rm -rf \
         /var/lib/apt/lists/* \
         /etc/nginx/sites-enabled \
