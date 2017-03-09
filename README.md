@@ -15,9 +15,8 @@ In your `docker-compose.yml` include something like
                 - "443:443"
             volumes:
                 - .:/app
-                - ./vhost.conf:/etc/nginx/sites-enabled/vhost.conf
 
 Then browse to `http://localhost` or `https://localhost`
 
 **NOTE**
-Uses the `app` user that is created in the `akilli/base` image. 
+Uses the `app` user that is created in the `akilli/base` image. Per default, `/etc/nginx/nginx.conf` includes `/app/*/nginx.conf` files. 
