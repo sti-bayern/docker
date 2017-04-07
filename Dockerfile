@@ -6,7 +6,7 @@ LABEL maintainer "Ayhan Akilli"
 # Build variables
 #
 ARG DEBIAN_FRONTEND=noninteractive
-ARG DC=1.11.2
+ARG DC=1.12.0
 
 #
 # Environment variables
@@ -20,7 +20,7 @@ ENV JENKINS_HOME=/data \
 # Setup
 #
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
-    echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable" > /etc/apt/sources.list.d/docker.list && \
+    echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial edge" > /etc/apt/sources.list.d/docker.list && \
     apt-get -y update && \
     apt-get -y --no-install-recommends install \
         docker-ce \
