@@ -11,8 +11,9 @@ ARG DC=1.12.0
 #
 # Environment variables
 #
-ENV JENKINS_HOME=/data \
-    JENKINS_GROUP=app \
+ENV JENKINS_GROUP=app \
+    JENKINS_HOME=/data \
+    JENKINS_LOG=/var/log/app/jenkins.log \
     JENKINS_URL=https://updates.jenkins-ci.org/latest/jenkins.war \
     JENKINS_USER=app
 
@@ -28,19 +29,14 @@ RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
     apt-get -y --purge autoremove && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \
-    mkdir -p \
-        /data \
-        /var/cache/jenkins/war \
-        /var/log/jenkins && \
+    mkdir -p /var/cache/jenkins/war && \
     curl -fsSL $JENKINS_URL -o /app/jenkins.war && \
     curl -L https://github.com/docker/compose/releases/download/$DC/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose && \
     chmod +x /usr/local/bin/docker-compose && \
     usermod -aG docker app && \
     chown -R app:app \
         /app \
-        /data \
-        /var/cache/jenkins \
-        /var/log/jenkins
+        /var/cache/jenkins
 #
 # Volumes
 #
