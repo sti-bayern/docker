@@ -44,8 +44,7 @@ RUN apt-get -y update && \
        go$GO.linux-amd64.tar.gz \
        /app/public/less \
        /usr/local/go && \
-    mkdir -p \
-        /app/log \
+    mkdir \
         /data/git \
         /data/gogs && \
     chown -R app:app \
