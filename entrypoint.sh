@@ -2,7 +2,7 @@
 
 set -e
 
-chown -R app:app $PGCONF $PGDATA /run/postgresql
+chown -R app:app $PGCONF $PGDATA /run/postgresql /var/log/postgresql
 find $PGDATA -type d -exec chmod 700 {} \;
 find $PGDATA -type f -exec chmod 600 {} \;
 opt="--config-file=$PGCONF/postgresql.conf -D $PGDATA"
