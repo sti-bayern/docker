@@ -24,7 +24,6 @@ ENV PG=$PG \
 #
 RUN apt-get -y update && \
     apt-get -y --no-install-recommends install \
-        ca-certificates \
         curl && \
     curl -s https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
     echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" > /etc/apt/sources.list.d/postgres.list && \
@@ -33,7 +32,6 @@ RUN apt-get -y update && \
         postgresql-$PG \
         postgresql-contrib-$PG && \
     apt-get -y --purge remove \
-        ca-certificates \
         curl && \
     apt-get -y --purge autoremove && \
     apt-get -y clean && \
