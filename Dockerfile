@@ -23,6 +23,7 @@ ENV JENKINS_GROUP=app \
 RUN apt-get -y update && \
     apt-get -y --no-install-recommends install \
         apt-transport-https \
+        ca-certificates \
         curl \
         openjdk-8-jdk-headless && \
     mkdir -p /var/cache/jenkins/war && \
