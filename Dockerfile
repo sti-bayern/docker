@@ -20,27 +20,30 @@ ENV JENKINS_GROUP=app \
 #
 # Setup
 #
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
+RUN apt-get -y update && \
+    apt-get -y --no-install-recommends install \
+        apt-transport-https \
+        curl \
+        openjdk-8-jdk-headless && \
+    mkdir -p /var/cache/jenkins/war && \
+    curl -fsSL $JENKINS_URL -o /app/jenkins.war && \
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
     echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial edge" > /etc/apt/sources.list.d/docker.list && \
     apt-get -y update && \
     apt-get -y --no-install-recommends install \
-        docker-ce \
-        openjdk-8-jdk-headless && \
+        docker-ce && \
+    curl -L https://github.com/docker/compose/releases/download/$DC/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose && \
+    chmod +x /usr/local/bin/docker-compose && \
+    apt-get -y --purge remove \
+        apt-transport-https \
+        curl && \
     apt-get -y --purge autoremove && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \
-    mkdir -p /var/cache/jenkins/war && \
-    curl -fsSL $JENKINS_URL -o /app/jenkins.war && \
-    curl -L https://github.com/docker/compose/releases/download/$DC/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose && \
-    chmod +x /usr/local/bin/docker-compose && \
     usermod -aG docker app && \
     chown -R app:app \
         /app \
         /var/cache/jenkins
-#
-# Volumes
-#
-VOLUME ["/data"]
 
 #
 # Ports
