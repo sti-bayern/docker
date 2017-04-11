@@ -41,4 +41,6 @@ RUN groupadd -r -g $ID app && \
         tzdata && \
     apt-get -y --purge autoremove && \
     apt-get -y clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf \
+        /var/cache/* \
+        /var/lib/apt/lists/*
