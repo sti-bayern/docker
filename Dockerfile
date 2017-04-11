@@ -23,7 +23,11 @@ COPY app.ini /data/custom/conf/app.ini
 
 RUN apt-get -y update && \
     apt-get -y --no-install-recommends install \
+        apt-transport-https \
         build-essential \
+        ca-certificates \
+        curl \
+        git \
         sqlite3 && \
     curl -O https://storage.googleapis.com/golang/go$GO.linux-amd64.tar.gz && \
     tar -C /usr/local -xzf go$GO.linux-amd64.tar.gz && \
@@ -32,7 +36,11 @@ RUN apt-get -y update && \
     cd $GOGSPATH && \
     CGO_ENABLED=1 GOOS=linux go build -a -tags sqlite -installsuffix cgo -o /app/gogs . && \
     apt-get -y --purge remove \
-        build-essential && \
+        apt-transport-https \
+        build-essential \
+        ca-certificates \
+        curl \
+        git && \
     apt-get -y --purge autoremove && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \
@@ -50,11 +58,6 @@ RUN apt-get -y update && \
     chown -R app:app \
         /app \
         /data
-
-#
-# Volumes
-#
-VOLUME ["/data"]
 
 #
 # Ports
