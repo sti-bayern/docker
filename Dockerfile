@@ -25,7 +25,6 @@ RUN apt-get -y update && \
     apt-get -y --no-install-recommends install \
         apt-transport-https \
         build-essential \
-        ca-certificates \
         curl \
         git \
         sqlite3 && \
@@ -38,7 +37,6 @@ RUN apt-get -y update && \
     apt-get -y --purge remove \
         apt-transport-https \
         build-essential \
-        ca-certificates \
         curl \
         git && \
     apt-get -y --purge autoremove && \
