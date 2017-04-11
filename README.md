@@ -15,5 +15,7 @@ In your `docker-compose.yml` include something like
             ports:
                 - "5432:5432"
             volumes:
-                - postgres:/var/lib/postgresql
+                - postgres:/data
 
+**NOTE**
+Uses the `app` user that is created in the `akilli/base` image.

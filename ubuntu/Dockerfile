@@ -7,41 +7,47 @@ LABEL maintainer "Ayhan Akilli"
 #
 ARG DEBIAN_FRONTEND=noninteractive
 ARG PG=9.6
-ARG PG_ROOT=postgres
+ARG PGPASS=app
 
 #
 # Environment variables
 #
-ENV PATH=/usr/lib/postgresql/$PG/bin:$PATH \
-    PG=$PG \
-    PG_ROOT=$PG_ROOT
+ENV PG=$PG \
+    PGBIN=/usr/lib/postgresql/$PG/bin \
+    PGCONF=/etc/postgresql/$PG/main \
+    PGDATA=/data \
+    PGPASS=$PGPASS \
+    PATH=$PGBIN:$PATH
 
 #
 # Setup
 #
-RUN wget -q -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
+RUN apt-get -y update && \
+    apt-get -y --no-install-recommends install \
+        ca-certificates \
+        curl && \
+    curl -s https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
     echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" > /etc/apt/sources.list.d/postgres.list && \
     apt-get -y update && \
     apt-get -y --no-install-recommends install \
         postgresql-$PG \
         postgresql-contrib-$PG && \
+    apt-get -y --purge remove \
+        ca-certificates \
+        curl && \
     apt-get -y --purge autoremove && \
     apt-get -y clean && \
     rm -rf \
         /var/lib/apt/lists/* \
         /var/lib/postgresql && \
-    mkdir -p \
-        /var/lib/postgresql \
-        /var/run/postgresql/$PG-main.pg_stat_tmp && \
-    chown postgres:postgres /var/run/postgresql/$PG-main.pg_stat_tmp && \
-    echo "listen_addresses='*'" >> /etc/postgresql/$PG/main/postgresql.conf
+    mkdir -p /var/run/postgresql/pg_stat_tmp && \
+    chown app:app \
+        $PGCONF \
+        /var/log/postgresql \
+        /var/run/postgresql/pg_stat_tmp && \
+    adduser app ssl-cert
 
-COPY pg_hba.conf /etc/postgresql/$PG/main/pg_hba.conf
-
-#
-# Volumes
-#
-VOLUME ["/var/lib/postgresql"]
+COPY conf/ $PGCONF/
 
 #
 # Ports
