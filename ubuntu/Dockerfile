@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM scratch
 
 LABEL maintainer "Ayhan Akilli"
 
@@ -6,22 +6,24 @@ LABEL maintainer "Ayhan Akilli"
 # Build variables
 #
 ARG DEBIAN_FRONTEND=noninteractive
+ARG ID=1000
 ARG LANG=de_DE.UTF-8
 ARG TERM=xterm
 ARG TZ=Europe/Berlin
-ARG UID=1000
 
 #
 # Environment variables
 #
 ENV LANG=$LANG \
-    TERM=$TERM \
-    TZ=$TZ
+    TERM=$TERM
 
 #
 # Setup
 #
-RUN useradd -r -u $UID -U -M app && \
+ADD rootfs.tar.gz /
+
+RUN groupadd -r -g $ID app && \
+    useradd -r -u $ID -g app -M app && \
     mkdir \
         /app \
         /data \
@@ -32,6 +34,7 @@ RUN useradd -r -u $UID -U -M app && \
         /var/log/app && \
     locale-gen $LANG && \
     update-locale LANG=$LANG && \
+    unlink /etc/localtime && \
     cp /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo $TZ > /etc/timezone && \
     apt-get -y remove \
