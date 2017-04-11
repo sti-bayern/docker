@@ -40,11 +40,11 @@ RUN apt-get -y update && \
     rm -rf \
         /var/lib/apt/lists/* \
         /var/lib/postgresql && \
-    mkdir -p /var/run/postgresql/pg_stat_tmp && \
+    mkdir -p /run/postgresql/pg_stat_tmp && \
     chown app:app \
         $PGCONF \
         /var/log/postgresql \
-        /var/run/postgresql/pg_stat_tmp && \
+        /run/postgresql/pg_stat_tmp && \
     adduser app ssl-cert
 
 COPY conf/ $PGCONF/
