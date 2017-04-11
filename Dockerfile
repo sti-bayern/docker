@@ -37,6 +37,9 @@ RUN groupadd -r -g $ID app && \
     unlink /etc/localtime && \
     cp /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo $TZ > /etc/timezone && \
+    apt-get -y update && \
+    apt-get -y --no-install-recommends install \
+        ca-certificates && \
     apt-get -y --purge remove \
         tzdata && \
     apt-get -y --purge autoremove && \
