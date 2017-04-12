@@ -26,7 +26,6 @@ RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com E5267A6C && \
         php$PHP-curl \
         php$PHP-fpm \
         php$PHP-gd \
-        php$PHP-imap \
         php$PHP-intl \
         php$PHP-json \
         php$PHP-mbstring \
@@ -44,9 +43,7 @@ RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com E5267A6C && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir -p /run/php && \
     ln -s ../../mods-available/php.ini /etc/php/$PHP/cli/conf.d/90-php.ini && \
-    ln -s ../../mods-available/php.ini /etc/php/$PHP/fpm/conf.d/90-php.ini && \
-    curl -sS https://getcomposer.org/installer | php && \
-    mv composer.phar /usr/local/bin/composer
+    ln -s ../../mods-available/php.ini /etc/php/$PHP/fpm/conf.d/90-php.ini
 
 COPY php.ini /etc/php/$PHP/mods-available/php.ini
 COPY www.conf /etc/php/$PHP/fpm/pool.d/www.conf
