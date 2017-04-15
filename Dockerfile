@@ -54,10 +54,7 @@ RUN apt-get -y update && \
        /usr/local/go && \
     mkdir \
         /data/git \
-        /data/gogs && \
-    chown -R app:app \
-        /app \
-        /data
+        /data/gogs
 
 #
 # Ports
