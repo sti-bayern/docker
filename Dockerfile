@@ -54,4 +54,4 @@ EXPOSE 9000
 #
 # Command
 #
-CMD php-fpm$PHP -F
+CMD php-fpm$PHP -FO
