@@ -41,10 +41,7 @@ RUN apt-get -y update && \
     apt-get -y --purge autoremove && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \
-    usermod -aG docker app && \
-    chown -R app:app \
-        /app \
-        /var/cache/jenkins
+    usermod -aG docker app
 
 #
 # Ports
