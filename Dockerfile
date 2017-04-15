@@ -20,7 +20,6 @@ RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com E5267A6C && \
     echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt/sources.list.d/php.list && \
     apt-get -y update && \
     apt-get -y --no-install-recommends install \
-        php$PHP-bcmath \
         php$PHP-cli \
         php$PHP-common \
         php$PHP-curl \
@@ -36,7 +35,6 @@ RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com E5267A6C && \
         php$PHP-soap \
         php$PHP-sqlite3 \
         php$PHP-xml \
-        php$PHP-xmlrpc \
         php$PHP-zip && \
     apt-get -y --purge autoremove && \
     apt-get -y clean && \
