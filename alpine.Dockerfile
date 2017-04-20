@@ -11,7 +11,7 @@ ARG UID=1000
 #
 # Setup
 #
-ADD rootfs.tar.gz /
+ADD alpine.tar.gz /
 
 RUN adduser -u $UID -H -D app app && \
     mkdir \
