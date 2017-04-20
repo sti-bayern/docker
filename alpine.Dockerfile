@@ -26,5 +26,6 @@ RUN adduser -u $UID -H -D app app && \
         tzdata && \
     cp /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo $TZ > /etc/timezone && \
-    apk del tzdata
+    apk del \
+        tzdata
 
