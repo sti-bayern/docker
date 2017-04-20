@@ -20,7 +20,7 @@ ENV LANG=$LANG \
 #
 # Setup
 #
-ADD rootfs.tar.gz /
+ADD ubuntu.tar.gz /
 
 RUN groupadd -r -g $ID app && \
     useradd -r -u $ID -g app -M app && \
