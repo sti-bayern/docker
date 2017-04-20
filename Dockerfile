@@ -23,6 +23,7 @@ RUN apt-get -y update && \
     mkdir /etc/nginx/ssl && \
     openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048
 
+COPY default.conf /app/nginx.conf
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY snippets/ /etc/nginx/snippets/
 
