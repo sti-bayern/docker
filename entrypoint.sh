@@ -2,19 +2,27 @@
 
 set -e
 
-chown -R app:app $PGCONF $PGDATA /run/postgresql /var/log/postgresql
-find $PGDATA -type d -exec chmod 700 {} \;
-find $PGDATA -type f -exec chmod 600 {} \;
-opt="--config-file=$PGCONF/postgresql.conf -D $PGDATA"
+chown -R app:app $PGDATA /run/postgresql /var/log/postgresql
 
 if [ -z "$(ls -A $PGDATA)" ]; then
-    su -c "$PGBIN/initdb -E UTF8 -U app -D $PGDATA" app
+    su -c "initdb -E UTF8 -U app" app
+    echo "listen_addresses='*'" >> $PGDATA/postgresql.conf
+    cat << EOF > $PGDATA/pg_hba.conf
+local   all             all                                     peer
+host    all             all             127.0.0.1/32            md5
+host    all             all             ::1/128                 md5
+host    all             all             172.0.0.1/8             md5
+host    all             all             10.0.0.0/8              md5
+EOF
 
-    sql="CREATE DATABASE app ENCODING 'UTF8';"
-    su -c "echo '$sql' | $PGBIN/postgres --single $opt postgres" app
+    cat << EOF | su -c "postgres --single postgres" app
+CREATE DATABASE app ENCODING 'UTF8';
+ALTER USER app WITH PASSWORD '$PGPASS';
+EOF
 
-    sql="ALTER USER app WITH PASSWORD '$PGPASS';"
-    su -c "echo '$sql' | $PGBIN/postgres --single $opt" app
+else
+    find $PGDATA -type d -exec chmod 700 {} \;
+    find $PGDATA -type f -exec chmod 600 {} \;
 fi
 
-su -c "$PGBIN/postgres $opt" app
+su -c postgres app

@@ -12,13 +12,8 @@ ARG PGPASS=app
 #
 # Environment variables
 #
-ENV PG=$PG \
-    PGBIN=/usr/lib/postgresql/$PG/bin \
-    PGCONF=/etc/postgresql/$PG/main \
-    PGDATA=/data \
-    PGPASS=$PGPASS \
-    PATH=$PGBIN:$PATH
-
+ENV PGDATA=/data \
+    PGPASS=$PGPASS
 #
 # Setup
 #
@@ -40,11 +35,8 @@ RUN apt-get -y update && \
     rm -rf \
         /var/lib/apt/lists/* \
         /var/lib/postgresql && \
-    mkdir -p /run/postgresql/pg_stat_tmp && \
-    adduser app ssl-cert
-
-COPY pg_hba.conf $PGCONF/pg_hba.conf
-COPY postgresql.conf $PGCONF/postgresql.conf
+    ln -s ../share/postgresql-common/pg_wrapper /usr/bin/initdb && \
+    ln -s ../share/postgresql-common/pg_wrapper /usr/bin/postgres
 
 #
 # Ports
