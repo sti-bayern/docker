@@ -43,7 +43,8 @@ RUN apt-get -y update && \
     mkdir -p /run/postgresql/pg_stat_tmp && \
     adduser app ssl-cert
 
-COPY conf/ $PGCONF/
+COPY pg_hba.conf $PGCONF/pg_hba.conf
+COPY postgresql.conf $PGCONF/postgresql.conf
 
 #
 # Ports
