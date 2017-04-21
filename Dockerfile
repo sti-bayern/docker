@@ -31,7 +31,7 @@ RUN apt-get -y update && \
     apt-get -y clean && \
     rm -rf \
        /app/public/less \
-       /tmp/gogs.tag.gz \
+       /tmp/* \
        /var/lib/apt/lists/* && \
     mkdir \
         /data/git \
