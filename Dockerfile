@@ -48,4 +48,5 @@ RUN groupadd -g $ID app && \
     apt-get -y clean && \
     rm -rf \
         /var/cache/* \
-        /var/lib/apt/lists/*
+        /var/lib/apt/lists/* \
+        /var/log/*log

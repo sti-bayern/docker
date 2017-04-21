@@ -29,4 +29,3 @@ RUN addgroup -g $ID app && \
     echo $TZ > /etc/timezone && \
     apk del \
         tzdata
-
