@@ -5,15 +5,16 @@ LABEL maintainer "Ayhan Akilli"
 #
 # Build variables
 #
+ARG ID=1000
 ARG TZ=Europe/Berlin
-ARG UID=1000
 
 #
 # Setup
 #
 ADD alpine.tar.gz /
 
-RUN adduser -u $UID -H -D app app && \
+RUN addgroup -g $ID app && \
+    adduser -u $ID -g app -m app && \
     mkdir \
         /app \
         /data \
