@@ -14,7 +14,7 @@ ARG TZ=Europe/Berlin
 ADD alpine.tar.gz /
 
 RUN addgroup -g $ID app && \
-    adduser -u $ID -g app -m app && \
+    adduser -u $ID -G app -D app && \
     mkdir \
         /app \
         /data \

@@ -23,7 +23,7 @@ ENV LANG=$LANG \
 ADD ubuntu.tar.gz /
 
 RUN groupadd -g $ID app && \
-    useradd -u $ID -g app -m app && \
+    useradd -u $ID -g app app && \
     mkdir \
         /app \
         /data \
@@ -32,12 +32,17 @@ RUN groupadd -g $ID app && \
         /app \
         /data \
         /var/log/app && \
+    apt-get -y update && \
+    apt-get -y --no-install-recommends install \
+        locales \
+        tzdata && \
     locale-gen $LANG && \
     update-locale LANG=$LANG && \
     unlink /etc/localtime && \
     cp /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo $TZ > /etc/timezone && \
     apt-get -y --purge remove \
+        locales \
         tzdata && \
     apt-get -y --purge autoremove && \
     apt-get -y clean && \
