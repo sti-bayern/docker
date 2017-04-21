@@ -17,7 +17,7 @@ ENV PHP=$PHP
 # Setup
 #
 RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com E5267A6C && \
-    echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main" > /etc/apt/sources.list.d/php.list && \
+    echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu zesty main" > /etc/apt/sources.list.d/php.list && \
     apt-get -y update && \
     apt-get -y --no-install-recommends install \
         php$PHP-cli \
