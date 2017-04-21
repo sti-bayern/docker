@@ -29,7 +29,7 @@ RUN apt-get -y update && \
     mkdir -p /var/cache/jenkins/war && \
     curl -fsSL $JENKINS_URL -o /app/jenkins.war && \
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
-    echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial edge" > /etc/apt/sources.list.d/docker.list && \
+    echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu yakkety edge" > /etc/apt/sources.list.d/docker.list && \
     apt-get -y update && \
     apt-get -y --no-install-recommends install \
         docker-ce && \
