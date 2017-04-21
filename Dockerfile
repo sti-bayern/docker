@@ -23,7 +23,7 @@ ENV LANG=$LANG \
 ADD ubuntu.tar.gz /
 
 RUN groupadd -g $ID app && \
-    useradd -u $ID -g app app && \
+    useradd -u $ID -g app -m app && \
     mkdir \
         /app \
         /data \
