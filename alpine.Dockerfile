@@ -21,7 +21,6 @@ RUN apk add --no-cache \
         sqlite && \
     apk add --no-cache --virtual .deps \
         build-base \
-        ca-certificates \
         go && \
     go get -v -u -tags sqlite $GOGS && \
     cd $GOPATH/src/$GOGS && \
