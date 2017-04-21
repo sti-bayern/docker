@@ -59,7 +59,4 @@ EXPOSE 9000
 #
 # Command
 #
-COPY entrypoint.sh /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
 CMD php-fpm$PHP -FO
