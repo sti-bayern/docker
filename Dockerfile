@@ -26,7 +26,7 @@ RUN apt-get -y update && \
         ca-certificates \
         curl \
         openjdk-8-jdk-headless && \
-    mkdir -p /var/cache/jenkins/war && \
+    mkdir -p /var/cache/app && \
     curl -fsSL $JENKINS_URL -o /app/jenkins.war && \
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
     echo "deb [arch=amd64] https://download.docker.com/linux/ubuntu yakkety edge" > /etc/apt/sources.list.d/docker.list && \
