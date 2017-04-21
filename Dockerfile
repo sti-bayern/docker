@@ -22,7 +22,7 @@ RUN apt-get -y update && \
         ca-certificates \
         curl && \
     curl -s https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - && \
-    echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" > /etc/apt/sources.list.d/postgres.list && \
+    echo "deb http://apt.postgresql.org/pub/repos/apt/ zesty-pgdg main" > /etc/apt/sources.list.d/postgres.list && \
     apt-get -y update && \
     apt-get -y --no-install-recommends install \
         postgresql-$PG \
