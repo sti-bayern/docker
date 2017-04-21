@@ -25,7 +25,6 @@ RUN apk add --no-cache \
     go get -v -u -tags sqlite $GOGS && \
     cd $GOPATH/src/$GOGS && \
     CGO_ENABLED=1 GOOS=linux go build -a -tags sqlite -installsuffix cgo -o /app/gogs . && \
-    mv conf /app && \
     mv public /app && \
     mv templates /app && \
     apk del \
