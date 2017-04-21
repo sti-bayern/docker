@@ -42,7 +42,6 @@ RUN groupadd -g $ID app && \
     cp /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo $TZ > /etc/timezone && \
     apt-get -y --purge remove \
-        locales \
         tzdata && \
     apt-get -y --purge autoremove && \
     apt-get -y clean && \
