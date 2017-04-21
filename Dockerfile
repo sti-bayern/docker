@@ -16,7 +16,10 @@ ENV PHP=$PHP
 #
 # Setup
 #
-RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com E5267A6C && \
+RUN apt-get -y update && \
+    apt-get -y --no-install-recommends install \
+        dirmngr && \
+    apt-key adv --recv-keys --keyserver keyserver.ubuntu.com E5267A6C && \
     echo "deb http://ppa.launchpad.net/ondrej/php/ubuntu zesty main" > /etc/apt/sources.list.d/php.list && \
     apt-get -y update && \
     apt-get -y --no-install-recommends install \
@@ -36,6 +39,8 @@ RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com E5267A6C && \
         php$PHP-sqlite3 \
         php$PHP-xml \
         php$PHP-zip && \
+    apt-get -y --purge remove \
+        dirmngr && \
     apt-get -y --purge autoremove && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \
