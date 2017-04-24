@@ -1,4 +1,4 @@
-FROM akilli/base:alpine
+FROM akilli/base
 
 LABEL maintainer "Ayhan Akilli"
 
