@@ -3,7 +3,7 @@
 set -e
 
 if [ -z "$(ls -A /data)" ]; then
-    su -c "initdb -E UTF8 -U app" app
+    su-exec app initdb -E UTF8 -U app
     echo "listen_addresses='*'" >> /data/postgresql.conf
     cat > /data/pg_hba.conf << EOF
 local   all             all                                     peer
@@ -13,7 +13,7 @@ host    all             all             172.0.0.1/8             md5
 host    all             all             10.0.0.0/8              md5
 EOF
 
-    cat << EOF | su -c "postgres --single postgres" app
+    cat << EOF | su-exec app postgres --single postgres
 CREATE DATABASE app ENCODING 'UTF8';
 ALTER USER app WITH PASSWORD '$PGPASS';
 EOF
