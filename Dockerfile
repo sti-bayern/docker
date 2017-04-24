@@ -18,7 +18,6 @@ RUN addgroup -g $ID app && \
     mkdir \
         /app \
         /data \
-        /var/cache/app \
         /var/log/app && \
     apk --no-cache add \
         su-exec \
