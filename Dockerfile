@@ -11,7 +11,7 @@ ARG TZ=Europe/Berlin
 #
 # Setup
 #
-ADD alpine.tar.gz /
+ADD rootfs.tar.gz /
 
 RUN addgroup -g $ID app && \
     adduser -u $ID -G app -s /bin/ash -D app && \
