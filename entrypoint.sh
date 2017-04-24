@@ -2,7 +2,7 @@
 
 set -e
 
-chown -R app:app $PGDATA /run/postgresql /var/log/postgresql
+chown -R app:app /app $PGDATA /run/postgresql /var/log/postgresql
 
 if [ -z "$(ls -A $PGDATA)" ]; then
     su -c "initdb -E UTF8 -U app" app
