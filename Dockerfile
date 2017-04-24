@@ -21,6 +21,7 @@ RUN addgroup -g $ID app && \
         /var/log/app && \
     apk --no-cache add \
         su-exec \
+        tini \
         tzdata && \
     cp /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo $TZ > /etc/timezone && \
@@ -32,5 +33,5 @@ RUN addgroup -g $ID app && \
 #
 COPY base-entry.sh /usr/local/bin/base-entry
 
-ENTRYPOINT ["base-entry"]
+ENTRYPOINT ["tini", "--", "base-entry"]
 CMD ["ash"]
