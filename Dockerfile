@@ -6,7 +6,13 @@ LABEL maintainer "Ayhan Akilli"
 # Build variables
 #
 ARG ID=1000
+ARG LANG=de_DE.UTF-8
 ARG TZ=Europe/Berlin
+
+#
+# Environment variables
+#
+ENV LANG=$LANG
 
 #
 # Setup
