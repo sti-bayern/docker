@@ -30,7 +30,6 @@ RUN apk add --no-cache \
     chmod +x /usr/local/bin/docker-compose && \
     apk del \
         curl && \
-    mkdir -p /var/cache/app && \
     echo 'jenkins ALL=(ALL) NOPASSWD: /usr/local/bin/docker, /usr/local/bin/docker-compose' >> /etc/sudoers
 
 #
