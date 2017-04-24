@@ -30,7 +30,8 @@ RUN apk add --no-cache \
     chmod +x /usr/local/bin/docker-compose && \
     apk del \
         curl && \
-    echo 'jenkins ALL=(ALL) NOPASSWD: /usr/local/bin/docker, /usr/local/bin/docker-compose' >> /etc/sudoers
+    echo 'jenkins ALL=(ALL) NOPASSWD: /usr/local/bin/docker, /usr/local/bin/docker-compose' >> /etc/sudoers && \
+    mkdir /app/cache
 
 #
 # Ports
@@ -40,6 +41,4 @@ EXPOSE 8080
 #
 # Command
 #
-COPY entrypoint.sh /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["su-exec", "app", "java", "-Djava.awt.headless=true", "-jar", "/app/jenkins.war", "--webroot=/app/cache", "--httpPort=8080"]
