@@ -3,15 +3,10 @@ FROM akilli/base
 LABEL maintainer "Ayhan Akilli"
 
 #
-# Build variables
-#
-ARG PGPASS=app
-
-#
 # Environment variables
 #
 ENV PGDATA=/data \
-    PGPASS=$PGPASS
+    PGPASS=app
 
 #
 # Setup
@@ -19,7 +14,10 @@ ENV PGDATA=/data \
 RUN apk add --no-cache \
         postgresql \
         postgresql-contrib && \
-    mkdir /run/postgresql
+    mkdir /run/postgresql && \
+    chown -R app:app \
+        /run/postgresql \
+        /var/log/postgresql
 
 #
 # Ports
@@ -29,6 +27,6 @@ EXPOSE 5432
 #
 # Command
 #
-COPY entrypoint.sh /entrypoint.sh
+COPY app-init.sh /usr/local/bin/app-init
 
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["su-exec", "app", "postgres"]
