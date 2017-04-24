@@ -31,7 +31,7 @@ RUN addgroup -g $ID app && \
 #
 # Command
 #
-COPY base-entry.sh /usr/local/bin/base-entry
+COPY app-entry.sh /usr/local/bin/app-entry
 
-ENTRYPOINT ["tini", "--", "base-entry"]
+ENTRYPOINT ["tini", "--", "app-entry"]
 CMD ["ash"]
