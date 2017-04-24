@@ -20,6 +20,7 @@ RUN addgroup -g $ID app && \
         /data \
         /var/log/app && \
     apk --no-cache add \
+        su-exec \
         tzdata && \
     cp /usr/share/zoneinfo/$TZ /etc/localtime && \
     echo $TZ > /etc/timezone && \
