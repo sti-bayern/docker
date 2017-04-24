@@ -1,4 +1,4 @@
-FROM akilli/base:alpine
+FROM akilli/base
 
 LABEL maintainer "Ayhan Akilli"
 
@@ -46,6 +46,4 @@ EXPOSE 3000
 #
 # Command
 #
-COPY entrypoint.sh /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["su-exec", "app", "/app/gogs", "web", "-c", "/data/conf/app.ini"]
