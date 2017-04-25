@@ -23,14 +23,14 @@ RUN apk add --no-cache \
         curl \
         docker \
         openjdk8 \
+        py-pip \
         sudo \
         ttf-dejavu && \
     curl -fsSL $JENKINS_URL -o /app/jenkins.war && \
-    curl -L https://github.com/docker/compose/releases/download/$DC/docker-compose-Linux-x86_64 > /usr/local/bin/docker-compose && \
-    chmod +x /usr/local/bin/docker-compose && \
+    pip install docker-compose && \
     apk del \
         curl && \
-    echo 'jenkins ALL=(ALL) NOPASSWD: /usr/local/bin/docker, /usr/local/bin/docker-compose' >> /etc/sudoers && \
+    echo 'app ALL = NOPASSWD: /usr/bin/docker, /usr/bin/docker-compose' >> /etc/sudoers && \
     mkdir /app/cache
 
 #
