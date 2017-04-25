@@ -3,11 +3,6 @@ FROM akilli/base
 LABEL maintainer "Ayhan Akilli"
 
 #
-# Build variables
-#
-ARG DC=1.12.0
-
-#
 # Environment variables
 #
 ENV JENKINS_GROUP=app \
