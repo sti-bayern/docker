@@ -1,21 +1,22 @@
-# akilli/postgres
+# `akilli/postgres`
 
-`akilli/base` based PostgreSQL image
+`akilli/base` based PostgreSQL image.
+
+Uses the `app` user that is created in the `akilli/base` image.
 
 ## Usage
 
 In your `docker-compose.yml` include something like
 
-    version: '3'
+    version: "3.2"
     volumes:
-        postgres: {}
+      postgres: {}
     services:
-        postgres:
-            image: akilli/postgres
-            ports:
-                - "5432:5432"
-            volumes:
-                - postgres:/data
-
-**NOTE**
-Uses the `app` user that is created in the `akilli/base` image.
+      postgres:
+        image: akilli/postgres
+        ports:
+          - "5432:5432"
+        volumes:
+          - source: postgres
+            target: /data
+            type: volume
