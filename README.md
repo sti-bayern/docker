@@ -2,8 +2,7 @@
 
 `akilli/base` based jenkins image that includes `sudo`, `docker` and `docker-compose`. 
 
-Runs as `app` user that is created in the `akilli/base` image. `sudo` is configured to allow the `app` user execution of 
-`docker`and `docker-compose` commands. 
+Runs as `app` user that is created in the `akilli/base` image. `sudo` is configured to allow the `app` user execution of `docker`and `docker-compose` commands. 
 
 ## Usage
 
