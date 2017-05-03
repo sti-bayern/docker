@@ -4,7 +4,12 @@ set -e
 
 if [ -z "$(ls -A /data)" ]; then
     su-exec app initdb -E UTF8 -U app
-    echo "listen_addresses='*'" >> /data/postgresql.conf
+
+    cat >> /data/postgresql.conf << EOF
+listen_addresses='*'
+log_directory = '/var/log/app'
+EOF
+
     cat > /data/pg_hba.conf << EOF
 local   all             all                                     peer
 host    all             all             127.0.0.1/32            md5
