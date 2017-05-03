@@ -18,6 +18,7 @@ ENV GOGS_CUSTOM=/data/custom \
 # Setup
 #
 RUN apk add --no-cache \
+        bash \
         git \
         sqlite && \
     apk add --no-cache --virtual .deps \
