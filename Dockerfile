@@ -13,8 +13,7 @@ RUN apk add --no-cache \
     openssl dhparam -out /etc/nginx/ssl/dhparam.pem 204
 
 COPY default.conf /app/nginx.conf
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY snippets/ /etc/nginx/snippets/
+COPY etc/ /etc/nginx/
 
 #
 # Ports
