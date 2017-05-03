@@ -1,6 +1,6 @@
 # `akilli/resgitry`
 
-`akilli/base` based Docker Registry image.
+`akilli/base` based Docker Registry image with htpasswd authentication.
 
 Uses the `app` user that is created in the `akilli/base` image.
 
