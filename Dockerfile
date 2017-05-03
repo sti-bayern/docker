@@ -14,7 +14,9 @@ ENV PGDATA=/data \
 RUN apk add --no-cache \
         postgresql \
         postgresql-contrib && \
-    rm -rf /var/log/postgresql && \
+    rm -rf \
+        /var/lib/postgresql \
+        /var/log/postgresql && \
     mkdir /run/postgresql && \
     chown -R app:app /run/postgresql
 
