@@ -8,6 +8,7 @@ LABEL maintainer "Ayhan Akilli"
 RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php7 \
         php7-config \
+        php7-ctype \
         php7-curl \
         php7-dom \
         php7-fileinfo \
