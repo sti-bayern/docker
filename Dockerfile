@@ -11,7 +11,8 @@ ARG GOPATH=/tmp/go
 #
 # Environment variables
 #
-ENV GOGS_CUSTOM=/data/custom
+ENV GOGS_CUSTOM=/data/custom \
+    USER=app
 
 #
 # Setup
