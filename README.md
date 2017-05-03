@@ -1,4 +1,4 @@
-# `akilli/resgitry`
+# `akilli/registry`
 
 `akilli/base` based Docker Registry image with htpasswd authentication.
 
@@ -10,13 +10,13 @@ In your `docker-compose.yml` include something like
 
     version: "3.2"
     volumes:
-      resgitry: {}
+      registry: {}
     services:
-      resgitry:
-        image: akilli/resgitry
+      registry:
+        image: akilli/registry
         ports:
           - "5000:5000"
         volumes:
-          - source: resgitry
+          - source: registry
             target: /data
             type: volume
