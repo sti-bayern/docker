@@ -17,6 +17,7 @@ ENV JENKINS_GROUP=app \
 RUN apk add --no-cache \
         curl \
         docker \
+        git \
         openjdk8 \
         py-pip \
         sudo \
