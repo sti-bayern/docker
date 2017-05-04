@@ -20,3 +20,7 @@ In your `docker-compose.yml` include something like
           - source: registry
             target: /data
             type: volume
+          - source: ./htpasswd
+            target: /etc/docker-registry/htpasswd
+            type: bind
+            read_only: true

@@ -3,16 +3,20 @@ FROM akilli/base
 LABEL maintainer "Ayhan Akilli"
 
 #
-# Environment variables
+# Build variables
 #
-ENV HTPWD=app \
-    HTUSR=app
+ARG HTPWD=app
+ARG HTUSR=app
 
 #
 # Setup
 #
 RUN apk add --no-cache \
+        apache2-utils \
         docker-registry && \
+    htpasswd -Bbn $HTUSR $HTPWD > /etc/docker-registry/htpasswd && \
+    apk del \
+        apache2-utils && \
     rm -rf /var/lib/registry
 
 COPY config.yml /etc/docker-registry/config.yml
@@ -25,6 +29,4 @@ EXPOSE 5000
 #
 # Command
 #
-COPY app-init.sh /usr/local/bin/app-init
-
 CMD ["su-exec", "app", "docker-registry", "serve", "/etc/docker-registry/config.yml"]
