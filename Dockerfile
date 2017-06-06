@@ -1,6 +1,6 @@
 FROM akilli/base
 
-LABEL maintainer "Ayhan Akilli"
+LABEL maintainer="Ayhan Akilli"
 
 #
 # Setup
