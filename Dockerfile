@@ -17,7 +17,7 @@ ENV LANG=$LANG
 #
 # Setup
 #
-ADD rootfs.tar.gz /
+ADD rootfs.tar.xz /
 
 RUN addgroup -g $ID app && \
     adduser -u $ID -G app -s /bin/ash -D app && \
