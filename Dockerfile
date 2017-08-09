@@ -5,8 +5,7 @@ LABEL maintainer="Ayhan Akilli"
 #
 # Environment variables
 #
-ENV PGDATA=/data \
-    PGPASS=app
+ENV PGPASS=app
 
 #
 # Setup
