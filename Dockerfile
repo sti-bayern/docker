@@ -27,6 +27,8 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php7-soap \
         php7-sqlite3 \
         php7-xml \
+        php7-xmlreader \
+        php7-xmlwriter \
         php7-xsl \
         php7-zip \
         php7-zlib
