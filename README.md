@@ -8,7 +8,7 @@ Runs as `app` user that is created in the `akilli/base` image. `sudo` is configu
 
 In your `docker-compose.yml` include something like
 
-    version: "3.2"
+    version: "3.3"
     volumes:
       jenkins: {}
     services:
