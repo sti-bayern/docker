@@ -1,6 +1,6 @@
 # `akilli/registry`
 
-`akilli/base` based Docker Registry image with htpasswd authentication.
+`akilli/base` based Docker Registry image.
 
 Uses the `app` user that is created in the `akilli/base` image.
 
@@ -20,7 +20,3 @@ In your `docker-compose.yml` include something like
           - source: registry
             target: /data
             type: volume
-          - source: ./htpasswd
-            target: /etc/docker-registry/htpasswd
-            type: bind
-            read_only: true

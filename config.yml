@@ -9,10 +9,6 @@ storage:
     enabled: true
   filesystem:
     rootdirectory: /data
-auth:
-  htpasswd:
-    realm: basic-realm
-    path: /etc/docker-registry/htpasswd
 http:
   addr: :5000
   headers:
