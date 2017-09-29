@@ -24,6 +24,7 @@ RUN apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         php7-opcache \
         php7-pgsql \
         php7-session \
+        php7-simplexml \
         php7-soap \
         php7-sqlite3 \
         php7-xml \
