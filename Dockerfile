@@ -25,6 +25,7 @@ RUN addgroup -g $ID app && \
         /app \
         /data \
         /var/log/app && \
+    echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
     apk --no-cache add \
         su-exec \
         tini \
