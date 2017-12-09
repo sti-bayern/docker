@@ -6,7 +6,7 @@
 
 In your `docker-compose.yml` include something like
 
-    version: "3.3"
+    version: "3.4"
     services:
       maildev:
         image: akilli/maildev
