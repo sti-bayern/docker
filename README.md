@@ -8,7 +8,6 @@ Uses the `app` user that is created in the `akilli/base` image.
 
 In your `docker-compose.yml` include something like
 
-    version: "3.4"
     volumes:
       registry: {}
     services:
