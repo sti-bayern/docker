@@ -26,6 +26,11 @@ EOF
     if [ -f /app.sql ]; then
         su-exec app pg_ctl -o "-c listen_addresses='localhost'" -w start
         su-exec app psql -f /app.sql app
+
+        if [ -f /data.sql ]; then
+            su-exec app psql -f /data.sql app
+        fi
+
         su-exec app pg_ctl -m fast -w stop
     fi
 else
