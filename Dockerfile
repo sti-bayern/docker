@@ -7,5 +7,5 @@ LABEL maintainer="Ayhan Akilli"
 #
 RUN apk add --no-cache \
         git \
-        nodejs-current \
-        nodejs-current-npm
+        nodejs \
+        nodejs-npm
