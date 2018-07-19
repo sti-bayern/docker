@@ -5,7 +5,7 @@ LABEL maintainer="Ayhan Akilli"
 #
 # Build variables
 #
-ARG GOGS=github.com/gogits/gogs
+ARG GOGS=github.com/gogs/gogs
 ARG GOPATH=/tmp/go
 
 #
