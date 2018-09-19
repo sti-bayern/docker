@@ -8,4 +8,4 @@ LABEL maintainer="Ayhan Akilli"
 RUN apk add --no-cache \
         git \
         nodejs \
-        nodejs-npm
+        npm
