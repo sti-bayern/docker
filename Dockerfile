@@ -34,15 +34,9 @@ RUN apk add --no-cache \
         php7-zip \
         php7-zlib
 
-COPY php.ini /etc/php7/conf.d/90-php.ini
-COPY www.conf /etc/php7/php-fpm.d/www.conf
+COPY etc/ /etc/
 
 #
 # Ports
 #
 EXPOSE 9000
-
-#
-# Command
-#
-CMD ["php-fpm7", "-FO"]
