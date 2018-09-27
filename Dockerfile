@@ -11,12 +11,9 @@ RUN npm install -g \
         /root/.config \
         /root/.npm
 
+COPY s6/ /etc/s6/
+
 #
 # Ports
 #
 EXPOSE 1025 1080
-
-#
-# Command
-#
-CMD ["su-exec", "app", "maildev"]
