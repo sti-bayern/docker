@@ -13,15 +13,9 @@ RUN apk add --no-cache \
     mkdir /etc/nginx/ssl && \
     openssl dhparam -out /etc/nginx/ssl/dhparam.pem 2048
 
-COPY default.conf /app/nginx.conf
-COPY etc/ /etc/nginx/
+COPY rootfs/ /
 
 #
 # Ports
 #
 EXPOSE 80 443
-
-#
-# Command
-#
-CMD ["nginx"]
