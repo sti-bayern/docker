@@ -1,3 +1,49 @@
+########################################################################################################################
+#
+# Build Image
+#
+########################################################################################################################
+FROM alpine AS builder
+
+#
+# Build variables
+#
+ARG LANG=de_DE.UTF-8
+ARG TZ=Europe/Berlin
+
+#
+# Setup
+#
+COPY rootfs/ /
+
+RUN mkdir \
+        /app \
+        /data \
+        /home/app \
+        /var/log/app && \
+    apk add --no-cache \
+        s6 && \
+    apk add --no-cache --virtual .deps \
+        tzdata && \
+    cp /usr/share/zoneinfo/$TZ /etc/localtime && \
+    echo $TZ > /etc/timezone && \
+    rm -rf \
+        /etc/opt \
+        /etc/TZ \
+        /etc/group- \
+        /etc/passwd- \
+        /etc/shadow- \
+        /var/empty \
+        /var/local \
+        /var/opt && \
+    apk del \
+        .deps
+
+########################################################################################################################
+#
+# Base Image
+#
+########################################################################################################################
 FROM scratch
 
 LABEL maintainer="Ayhan Akilli"
@@ -5,9 +51,7 @@ LABEL maintainer="Ayhan Akilli"
 #
 # Build variables
 #
-ARG ID=1000
 ARG LANG=de_DE.UTF-8
-ARG TZ=Europe/Berlin
 
 #
 # Environment variables
@@ -17,27 +61,10 @@ ENV LANG=$LANG
 #
 # Setup
 #
-ADD rootfs.tar.xz /
-
-RUN addgroup -g $ID app && \
-    adduser -u $ID -G app -s /bin/ash -D app && \
-    mkdir \
-        /app \
-        /data \
-        /var/log/app && \
-    apk --no-cache add \
-        su-exec \
-        tini \
-        tzdata && \
-    cp /usr/share/zoneinfo/$TZ /etc/localtime && \
-    echo $TZ > /etc/timezone && \
-    apk del \
-        tzdata
+COPY --from=builder / /
 
 #
 # Command
 #
-COPY app-entry.sh /usr/local/bin/app-entry
-
-ENTRYPOINT ["tini", "--", "app-entry"]
-CMD ["ash"]
+ENTRYPOINT ["app-entry"]
+CMD ["s6-svscan", "/etc/s6"]

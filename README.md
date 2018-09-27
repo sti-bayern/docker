@@ -1,5 +1,5 @@
 # `akilli/base`
 
-Base image with `tini`, `su-exec`, timezone and a user and group named `app` with UID/GID `1000`.
+A quite minimal base image built from `alpine:latest` with pre-installed `s6` package, `crond`-support, configured locale (default: `de_DE.UTF-8`) and timezone (default: `Europe/Berlin`), a user and group named `app` with UID/GID `1000` as well as the custom directories `/app`, `/data`, `/home/app` and `/var/log/app` owned by user `app`.
 
-Creates the `/app`, `/data` and `/var/log/app` directories. `app-entry` is added as entrypoint and ensures proper ownership of those directories. `app-entry` is invoked by `tini`. `app-entry` executes `app-init` if this executable exists before executing the passed `CMD` command. You can use `su-exec` in the `CMD` command of your derived image if necessary. Please see the other `akilli` images that are all derived from this image.
+A default entrypoint `app-entry` is provided and ensures proper ownership of the custom directories before executing the passed `CMD` command (default: `s6-svscan /etc/s6`). The pre-configured `s6` scan directory is `/etc/s6`. Please see the other `akilli` images that are all derived from this image.
