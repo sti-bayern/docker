@@ -38,14 +38,9 @@ RUN apk add --no-cache \
         /data/git \
         /data/gogs
 
-COPY app.ini /data/conf/app.ini
+COPY rootfs/ /
 
 #
 # Ports
 #
 EXPOSE 3000
-
-#
-# Command
-#
-CMD ["su-exec", "app", "/app/gogs", "web", "-c", "/data/conf/app.ini"]
