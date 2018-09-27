@@ -14,18 +14,17 @@ ENV JENKINS_GROUP=app \
 #
 # Setup
 #
+COPY s6/ /etc/s6/
+
 RUN apk add --no-cache \
-        curl \
         docker \
         git \
         openjdk8 \
         py-pip \
         sudo \
         ttf-dejavu && \
-    curl -fsSL $JENKINS_URL -o /app/jenkins.war && \
+    wget -O /app/jenkins.war $JENKINS_URL && \
     pip install docker-compose && \
-    apk del \
-        curl && \
     echo 'app ALL = NOPASSWD: /usr/bin/docker, /usr/bin/docker-compose' >> /etc/sudoers && \
     mkdir /app/cache
 
@@ -33,8 +32,3 @@ RUN apk add --no-cache \
 # Ports
 #
 EXPOSE 8080
-
-#
-# Command
-#
-CMD ["su-exec", "app", "java", "-Djava.awt.headless=true", "-jar", "/app/jenkins.war", "--webroot=/app/cache", "--httpPort=8080"]

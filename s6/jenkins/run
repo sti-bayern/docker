@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec s6-setuidgid app java -Djava.awt.headless=true -jar /app/jenkins.war --webroot=/app/cache --httpPort=8080
