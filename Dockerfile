@@ -14,8 +14,6 @@ ENV JENKINS_GROUP=app \
 #
 # Setup
 #
-COPY s6/ /etc/s6/
-
 RUN apk add --no-cache \
         docker \
         git \
@@ -27,6 +25,8 @@ RUN apk add --no-cache \
     pip install docker-compose && \
     echo 'app ALL = NOPASSWD: /usr/bin/docker, /usr/bin/docker-compose' >> /etc/sudoers && \
     mkdir /app/cache
+
+COPY s6/ /etc/s6/
 
 #
 # Ports
