@@ -22,7 +22,8 @@ RUN mkdir \
         /home/app \
         /var/log/app && \
     apk add --no-cache \
-        s6 && \
+        s6 \
+        su-exec && \
     apk add --no-cache --virtual .deps \
         tzdata && \
     cp /usr/share/zoneinfo/$TZ /etc/localtime && \
