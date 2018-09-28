@@ -3,7 +3,7 @@
 set -e
 
 if [ -z "$(ls -A /data)" ]; then
-    su-exec app initdb -E UTF8 -U app
+    exec s6-setuidgid app initdb -E UTF8 -U app
 
     cat >> /data/postgresql.conf << EOF
 listen_addresses='*'
@@ -18,22 +18,24 @@ host    all             all             172.16.0.0/12           md5
 host    all             all             10.0.0.0/8              md5
 EOF
 
-    cat << EOF | su-exec app postgres --single postgres
+    cat << EOF | exec s6-setuidgid app postgres --single postgres
 CREATE DATABASE app ENCODING 'UTF8';
 ALTER USER app WITH PASSWORD '$PGPASS';
 EOF
 
     if [ -f /app.sql ]; then
-        su-exec app pg_ctl -o "-c listen_addresses='localhost'" -w start
-        su-exec app psql -f /app.sql app
+        exec s6-setuidgid app pg_ctl -o "-c listen_addresses='localhost'" -w start
+        exec s6-setuidgid app psql -f /app.sql app
 
         if [ -f /data.sql ]; then
-            su-exec app psql -f /data.sql app
+            exec s6-setuidgid app psql -f /data.sql app
         fi
 
-        su-exec app pg_ctl -m fast -w stop
+        exec s6-setuidgid app pg_ctl -m fast -w stop
     fi
 else
     find /data -type d -exec chmod 700 {} \;
     find /data -type f -exec chmod 600 {} \;
 fi
+
+exec s6-setuidgid app postgres

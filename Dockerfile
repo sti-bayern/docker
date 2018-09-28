@@ -20,14 +20,9 @@ RUN apk add --no-cache \
     mkdir /run/postgresql && \
     chown -R app:app /run/postgresql
 
+COPY s6/ /etc/s6/
+
 #
 # Ports
 #
 EXPOSE 5432
-
-#
-# Command
-#
-COPY app-init.sh /usr/local/bin/app-init
-
-CMD ["su-exec", "app", "postgres"]
