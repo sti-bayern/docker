@@ -5,7 +5,7 @@ set -e
 chown -R app:app /app /data /home/app /var/log/app || true
 
 if [ $# = 0 ]; then
-    exec "$@"
-else
     exec s6-svscan /etc/s6
+else
+    exec "$@"
 fi
