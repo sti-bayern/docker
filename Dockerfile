@@ -15,6 +15,7 @@ RUN apk add --no-cache \
         php7-gd \
         php7-intl \
         php7-json \
+        php7-ldap \
         php7-mbstring \
         php7-mysqlnd \
         php7-pdo \
