@@ -7,7 +7,6 @@ LABEL maintainer="Ayhan Akilli"
 #
 ENV JENKINS_GROUP=app \
     JENKINS_HOME=/data \
-    JENKINS_LOG=/var/log/app/jenkins.log \
     JENKINS_URL=https://updates.jenkins-ci.org/latest/jenkins.war \
     JENKINS_USER=app
 
