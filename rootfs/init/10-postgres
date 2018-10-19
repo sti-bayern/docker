@@ -27,7 +27,9 @@ EOF
         su-exec app pg_ctl -o "-c listen_addresses='localhost'" -w start
 
         for file in /init/postgres/*.sql; do
-            su-exec app psql -f $file app
+            if [ -f "$file" ]; then
+                su-exec app psql -f $file app
+            fi
         done
 
         su-exec app pg_ctl -m fast -w stop
