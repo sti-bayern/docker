@@ -26,10 +26,8 @@ EOF
     if [ -d /init/postgres ]; then
         su-exec app pg_ctl -o "-c listen_addresses='localhost'" -w start
 
-        for file in /init/postgres/*.sql; do
-            if [ -f "$file" ]; then
-                su-exec app psql -f $file app
-            fi
+        for file in `find /init/postgres -type f -name '*.sql' | sort`; do
+            su-exec app psql -f $file app
         done
 
         su-exec app pg_ctl -m fast -w stop
