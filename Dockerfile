@@ -68,4 +68,4 @@ COPY --from=builder / /
 # Command
 #
 ENTRYPOINT ["app-entry"]
-CMD ["s6-svscan", "/etc/s6"]
+CMD []
