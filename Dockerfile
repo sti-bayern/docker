@@ -17,7 +17,9 @@ RUN apk add --no-cache \
     rm -rf \
         /var/lib/postgresql \
         /var/log/postgresql && \
-    mkdir /run/postgresql && \
+    mkdir -p \
+        /etc/postgres.init \
+        /run/postgresql && \
     chown -R app:app /run/postgresql
 
 COPY s6/ /etc/s6/
