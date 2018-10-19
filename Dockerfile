@@ -19,8 +19,7 @@ COPY rootfs/ /
 RUN mkdir \
         /app \
         /data \
-        /home/app \
-        /var/log/app && \
+        /home/app && \
     apk add --no-cache \
         s6 \
         su-exec && \
