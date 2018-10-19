@@ -2,7 +2,7 @@
 
 `akilli/base` based PostgreSQL image.
 
-Uses the `app` user that is created in the `akilli/base` image. Creates the directory `/etc/postgres.init` and executes all `*.sql` files in this directory on database initialisation.
+Uses the `app` user that is created in the `akilli/base` image. Creates the directory `/init/postgres` and executes all `*.sql` files in this directory on database initialisation.
 
 ## Usage
 

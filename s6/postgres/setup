@@ -24,10 +24,10 @@ CREATE DATABASE app ENCODING 'UTF8';
 ALTER USER app WITH PASSWORD '$PGPASS';
 EOF
 
-    if [ -d /etc/postgres.init ]; then
+    if [ -d /init/postgres ]; then
         su-exec app pg_ctl -o "-c listen_addresses='localhost'" -w start
 
-        for file in /etc/postgres.init/*.sql; do
+        for file in /init/postgres/*.sql; do
             su-exec app psql -f $file app
         done
 

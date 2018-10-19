@@ -18,7 +18,7 @@ RUN apk add --no-cache \
         /var/lib/postgresql \
         /var/log/postgresql && \
     mkdir -p \
-        /etc/postgres.init \
+        /init/postgres \
         /run/postgresql && \
     chown -R app:app /run/postgresql
 
