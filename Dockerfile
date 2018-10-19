@@ -22,7 +22,7 @@ RUN apk add --no-cache \
         /run/postgresql && \
     chown -R app:app /run/postgresql
 
-COPY s6/ /etc/s6/
+COPY rootfs/ /
 
 #
 # Ports
