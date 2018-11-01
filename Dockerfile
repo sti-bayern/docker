@@ -14,6 +14,7 @@ ENV JENKINS_GROUP=app \
 # Setup
 #
 RUN apk add --no-cache \
+        curl \
         docker \
         git \
         openjdk8 \
