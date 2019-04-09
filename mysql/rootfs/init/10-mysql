@@ -23,7 +23,7 @@ else
     find /data -type f -exec chmod 600 {} \;
 fi
 
-grep '\[mysqldump\]' /etc/mysql/my.cnf || cat >> /etc/mysql/my.cnf << EOF
+grep '\[mysqldump\]' /etc/my.cnf || cat >> /etc/my.cnf << EOF
 [mysqldump]
 user=app
 password=$MPASS
