@@ -1,0 +1,30 @@
+#!/bin/sh
+
+set -e
+
+chown -R app:app /run/mysqld /var/log/app
+
+if [ -z "$(ls -A /data)" ]; then
+    su-exec app mysql_install_db --datadir=/data
+    initfile='/tmp/init.sql'
+
+    cat > "$initfile" << EOF
+        DROP DATABASE IF EXISTS test;
+        CREATE DATABASE app DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
+        DELETE FROM mysql.user;
+        CREATE USER 'app'@'%' IDENTIFIED BY '$MPASS';
+        GRANT ALL PRIVILEGES ON *.* TO 'app'@'%' WITH GRANT OPTION;
+        FLUSH PRIVILEGES;
+EOF
+
+    su-exec app mysqld --init-file="$initfile"
+else
+    find /data -type d -exec chmod 700 {} \;
+    find /data -type f -exec chmod 600 {} \;
+fi
+
+grep '\[mysqldump\]' /etc/mysql/my.cnf || cat >> /etc/mysql/my.cnf << EOF
+[mysqldump]
+user=app
+password=$MPASS
+EOF
