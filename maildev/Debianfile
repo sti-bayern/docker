@@ -1,4 +1,4 @@
-FROM akilli/node
+FROM akilli/node:debian
 
 LABEL maintainer="Ayhan Akilli"
 
