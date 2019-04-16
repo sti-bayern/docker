@@ -5,10 +5,14 @@ set -e
 chown -R app:app /run/mysqld /var/log/app
 
 if [ -z "$(ls -A /data)" ]; then
-    su-exec app mysql_install_db --datadir=/data
-    initfile='/tmp/init.sql'
+    mysql_install_db --user=app --datadir=/data --auth-root-authentication-method=normal
+    mysqld --user=app --skip-networking &
 
-    cat > "$initfile" << EOF
+    until mysqladmin -uroot ping > /dev/null 2>&1; do
+        echo -n "."; sleep 0.2
+    done
+
+    mysql -uroot << EOF
         DROP DATABASE IF EXISTS test;
         CREATE DATABASE app DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
         DELETE FROM mysql.user;
@@ -17,7 +21,11 @@ if [ -z "$(ls -A /data)" ]; then
         FLUSH PRIVILEGES;
 EOF
 
-    su-exec app mysqld --init-file="$initfile"
+    for file in `find /init/mysql -type f -name '*.sql' | sort`; do
+        mysql -uapp -p"$MYPASS" app < $file
+    done
+
+    mysqladmin -uapp -p"$MYPASS" shutdown
 else
     find /data -type d -exec chmod 700 {} \;
     find /data -type f -exec chmod 600 {} \;

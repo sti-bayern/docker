@@ -2,7 +2,7 @@
 
 `akilli/base` based MariaDB image.
 
-Uses the `app` user that is created in the `akilli/base` image.
+Uses the `app` user that is created in the `akilli/base` image. Creates the directory `/init/mysql` and executes all `*.sql` files in this directory on database initialisation.
 
 ## Usage
 
