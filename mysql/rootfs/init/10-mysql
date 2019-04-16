@@ -12,7 +12,7 @@ if [ -z "$(ls -A /data)" ]; then
         DROP DATABASE IF EXISTS test;
         CREATE DATABASE app DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;
         DELETE FROM mysql.user;
-        CREATE USER 'app'@'%' IDENTIFIED BY '$MPASS';
+        CREATE USER 'app'@'%' IDENTIFIED BY '$MYPASS';
         GRANT ALL PRIVILEGES ON *.* TO 'app'@'%' WITH GRANT OPTION;
         FLUSH PRIVILEGES;
 EOF
@@ -26,5 +26,5 @@ fi
 grep '\[mysqldump\]' /etc/my.cnf || cat >> /etc/my.cnf << EOF
 [mysqldump]
 user=app
-password=$MPASS
+password=$MYPASS
 EOF

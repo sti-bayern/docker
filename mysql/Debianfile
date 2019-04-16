@@ -1,0 +1,38 @@
+FROM akilli/base:debian
+
+LABEL maintainer="Ayhan Akilli"
+
+#
+# Build variables
+#
+ARG MY=10.3
+
+#
+# Environment variables
+#
+ENV MYPASS=app
+
+#
+# Setup
+#
+RUN apt-get -y update && \
+    apt-get -y --no-install-recommends install \
+        mariadb-server-$MY && \
+    apt-get -y --purge autoremove && \
+    apt-get -y clean && \
+    rm -rf \
+        /etc/mysql/my.cnf \
+        /var/lib/apt/lists/* \
+        /var/lib/mysql && \
+    mkdir -p \
+        /init/mysql \
+        /run/mysqld \
+        /var/log/app && \
+    ln -s ../my.cnf /etc/mysql/my.cnf
+
+COPY rootfs/ /
+
+#
+# Ports
+#
+EXPOSE 3306

@@ -5,7 +5,7 @@ LABEL maintainer="Ayhan Akilli"
 #
 # Environment variables
 #
-ENV MPASS=app
+ENV MYPASS=app
 
 #
 # Setup
