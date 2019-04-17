@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -euo pipefail
+set -e
 
 chown -R app:app /run/mysqld /var/log/app
 
