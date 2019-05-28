@@ -22,6 +22,7 @@ RUN apt-get -y update && \
     apt-get -y clean && \
     rm -rf \
         /etc/mysql/my.cnf \
+        /var/cache/apt/* \
         /var/lib/apt/lists/* \
         /var/lib/mysql && \
     mkdir -p \
