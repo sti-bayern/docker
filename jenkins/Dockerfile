@@ -11,6 +11,7 @@ RUN apk add --no-cache \
         docker-cli \
         docker-compose \
         git \
+        curl \
         openjdk8-jre \
         sudo \
         ttf-dejavu && \
