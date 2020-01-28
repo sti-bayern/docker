@@ -1,32 +1,24 @@
-FROM akilli/docker
+FROM akilli/base
 
 LABEL maintainer="Ayhan Akilli"
 
-#
-# Build variables
-#
-ARG JENKINS_URL=https://updates.jenkins-ci.org/latest/jenkins.war
+ENV JAVA_HOME=/usr/lib/jvm/default-jvm
+ENV JENKINS_GROUP=app
+ENV JENKINS_HOME=/data
+ENV JENKINS_USER=app
 
-#
-# Environment variables
-#
-ENV JENKINS_GROUP=app \
-    JENKINS_HOME=/data \
-    JENKINS_USER=app
-
-#
-# Setup
-#
 RUN apk add --no-cache \
+        docker-cli \
+        docker-compose \
         git \
         openjdk8-jre \
+        sudo \
         ttf-dejavu && \
-    curl -fsSL $JENKINS_URL -o /app/jenkins.war && \
-    mkdir /app/cache
+    echo 'app ALL = NOPASSWD: /usr/bin/docker, /usr/bin/docker-compose' >> /etc/sudoers && \
+    mkdir -p \
+        /usr/share/webapps/jenkins \
+        /var/cache/jenkins && \
+    chown -R app:app /var/cache/jenkins && \
+    wget -O /usr/share/webapps/jenkins/jenkins.war https://updates.jenkins-ci.org/latest/jenkins.war
 
-COPY s6/ /etc/s6/jenkins/
-
-#
-# Ports
-#
-EXPOSE 8080
+COPY s6/ /s6/jenkins/
