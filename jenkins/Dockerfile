@@ -15,6 +15,7 @@ RUN apk add --no-cache \
         openjdk8-jre \
         sudo \
         postgresql-client \
+        openssh-client \
         rsync \
         ttf-dejavu && \
     echo 'app ALL = NOPASSWD: /usr/bin/docker, /usr/bin/docker-compose' >> /etc/sudoers && \
